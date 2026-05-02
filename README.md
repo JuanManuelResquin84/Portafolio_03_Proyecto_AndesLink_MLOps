@@ -74,11 +74,11 @@ graph TD
 
     %% Colores para resaltar
 
-    style ALERTA fill:#f99,stroke:#900
+    style ALERTA fill:#ff0000,stroke:#900
 
-    style OK fill:#9f9,stroke:#060
+    style OK fill:#00ff00,stroke:#060
 
-    style APP fill:#bbf,stroke:#00f
+    style APP fill:#0000ff,stroke:#00f
 
 ```
 
