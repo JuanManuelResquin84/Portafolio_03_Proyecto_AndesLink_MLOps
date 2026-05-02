@@ -19,35 +19,70 @@
 # **ARQUITECTURA DE SOLUCIÓN**
 ## Representación lógica del flujo de trabajo, desde el procesamiento de datos en los Notebooks hasta la ejecución del script de inferencia.
 
+
 ```mermaid
+
 %%{init: {'theme': 'dark'}}%%
+
 graph TD
-    %% Nodos principales
-    Data[(BD Datos)] --> EDA(01-EDA)
-    EDA --> Model(02-Modelado)
-    
-    %% Artefactos
-    subgraph Modelos ["Carpeta models/"]
-        P1(modelo_nbV1.pkl)
+
+    %% Flujo Principal
+
+    DATA[(Dataset CSV)] --> EDA(01-EDA.ipynb)
+
+    EDA --> MODEL(02-Modelado.ipynb)
+
+   
+
+    %% Guardado de Archivos
+
+    subgraph Modelos [Carpeta models]
+
+        P1(modelo_churn.pkl)
+
         P2(scaler.pkl)
+
         P3(columns.pkl)
+
     end
 
-    Model --> P1 & P2 & P3
-    
-    %% Inferencia
-    P1 & P2 & P3 --> App(app.py)
-    New[Nuevo Cliente] --> App
-    App --> Res{Resultado}
-    
-    Res -->|Prob >= 0.35| Alert[ALERTA: Churn]
-    Res -->|Prob < 0.35| OK[Cliente Estable]
+    MODEL --> P1
 
-    %% Estilos básicos
-    style Alert fill:#fcc,stroke:#f00
-    style OK fill:#cfc,stroke:#0a0
-    style App fill:#eef,stroke:#00f
+    MODEL --> P2
+
+    MODEL --> P3
+
+
+
+    %% Proceso de Inferencia
+
+    P1 & P2 & P3 --> APP(app.py)
+
+    CLIENTE[Datos Nuevo Cliente] --> APP
+
+   
+
+    %% Decisiones
+
+    APP --> RES{Resultado}
+
+    RES -->|Prob >= 0.35| ALERTA[ALERTA: Churn]
+
+    RES -->|Prob < 0.35| OK[Cliente Estable]
+
+
+
+    %% Colores para resaltar
+
+    style ALERTA fill:#f99,stroke:#900
+
+    style OK fill:#9f9,stroke:#060
+
+    style APP fill:#bbf,stroke:#00f
+
 ```
+
+
 
 # **FASE 1: Desarrollo del Informe Técnico**
 ## **1. Análisis Exploratorio de Datos (EDA)**
