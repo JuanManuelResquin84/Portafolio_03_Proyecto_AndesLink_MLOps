@@ -138,9 +138,6 @@ graph TD
 ## **Validación del Sistema:**
 ## Se realizó una prueba de estrés con un cliente de ejemplo, obteniendo una ejecución exitosa en 3.7 segundos con los siguientes resultados:
 
-### ✅ Validación del Sistema
-Se realizó una prueba de estrés con un cliente de ejemplo, obteniendo una ejecución exitosa con los siguientes resultados:
-
 | Métrica | Resultado |
 | :--- | :--- |
 | **Probabilidad de Abandono** | 76.42% |
