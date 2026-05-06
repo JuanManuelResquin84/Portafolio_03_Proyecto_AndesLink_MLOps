@@ -2,4 +2,4 @@
     remote = storage
 ['remote "storage"']
     url = s3://dvc
-    endpointurl = https://dagshub.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.s3
+    endpointurl = https://dagshub.com/JuanManuelResquin84/Proyecto_AndesLink.s3
