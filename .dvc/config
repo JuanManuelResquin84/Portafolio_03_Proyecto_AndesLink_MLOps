@@ -1,3 +1,7 @@
-[remote "storage"]
-    url = s3://dvc
-    endpointurl = https://dagshub.com/JuanManuelResquin84/Proyecto_AndesLink.s3
+[core]
+    remote = storage
+['remote "storage"']
+    url = https://dagshub.com/JuanManuelResquin84/Proyecto_AndesLink.dvc
+    auth = basic
+    user = JuanManuelResquin84
+    password = 31c8b8d1b0b3263422b3496c1e8cdc0bb4b57a4d
