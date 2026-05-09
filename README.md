@@ -1,4 +1,6 @@
 # **PROYECTO DE PREDICCIÓN DE CHURN - AndesLink**
+
+### Carrera: **Ciencia de Datos e IA - 2do Año**
 ### Alumno: **Juan Manuel Resquin**
 ### Materia: **Laboratorio de Minería de Datos**
 
