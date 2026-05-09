@@ -2,7 +2,7 @@
     "nombre_modelo": "AndesLink_Churn_LR_V2",
     "version": "2.0",
     "autor": "Juan Manuel Resquin",
-    "fecha_exportacion": "2026-05-09 15:21:54",
+    "fecha_exportacion": "2026-05-09 16:19:51",
     "algoritmo": "Logistic Regression",
     "metricas_validacion": {
         "accuracy": 0.656,
