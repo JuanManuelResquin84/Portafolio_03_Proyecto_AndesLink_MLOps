@@ -54,7 +54,7 @@ graph TD
     API --> RES{Predicción}
 ```
 
-# **FASE 1:** Análisis Exploratorio (EDA)
+# **FASE 1:** Análisis Exploratorio (EDA) (01_EDA_AndesLink.ipynb)
 
 ### Se realizó una auditoría de calidad sobre 5000 registros.
 
