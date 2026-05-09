@@ -62,7 +62,7 @@ graph TD
 
 * **Visualización:** Se generaron reportes de métricas comparativas iniciales.
 
-![Tabla Comparativa de los Modelos](tabla_comparativa_modelos.png)
+![Tabla Comparativa de los Modelos](reports/tabla_comparativa_modelos.png)
 
 FASE 2: Experimentación y MLOps
 A diferencia de un flujo tradicional, aquí se implementó un gobierno de modelos:
