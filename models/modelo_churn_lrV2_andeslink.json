@@ -1,0 +1,22 @@
+{
+    "nombre_modelo": "AndesLink_Churn_LR_V2",
+    "version": "2.0",
+    "autor": "Juan Manuel Resquin",
+    "fecha_exportacion": "2026-05-09 15:21:54",
+    "algoritmo": "Logistic Regression",
+    "metricas_validacion": {
+        "accuracy": 0.656,
+        "recall": 0.791,
+        "f1_score": 0.61,
+        "umbral_optimo": 0.45
+    },
+    "variables_entrada": [
+        "tenure",
+        "MonthlyCharges",
+        "TotalCharges",
+        "InternetService",
+        "Contract",
+        "PaymentMethod"
+    ],
+    "entorno_conda": "churn_env"
+}
