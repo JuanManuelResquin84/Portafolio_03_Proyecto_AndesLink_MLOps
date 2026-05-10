@@ -183,11 +183,11 @@ graph TD
 (En lugar de configurar DVC manualmente, ejecute el siguiente comando para descargar los archivos pesados (CSV y modelos .pkl) directamente)
 * `dagshub download JuanManuelResquin84/Proyecto_AndesLink`
 
-6. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
+4. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
 
-7. **Lanzar la API de Inferencia:** 
+5. **Lanzar la API de Inferencia:** 
 * `python main.py`
 
-8. **Probar API: ingresando a la Interfaz de Prueba** 
+6. **Probar API: ingresando a la Interfaz de Prueba** 
 * `http://localhost:8000/docs`
 (Una vez que el servidor esté activo, acceda a la documentación interactiva para realizar predicciones en tiempo real enviando un JSON de prueba)
