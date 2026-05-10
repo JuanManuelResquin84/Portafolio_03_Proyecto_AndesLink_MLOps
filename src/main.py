@@ -82,3 +82,8 @@ def predecir(cliente: Cliente):
         "prediccion": "Fuga (1)" if clase == 1 else "Se queda (0)",
         "accion_recomendada": "Llamar para retención" if clase == 1 else "Mantener monitoreo"
     }
+    
+if __name__ == "__main__":
+    import uvicorn
+    # Arrancamos el servidor en el puerto 8000
+    uvicorn.run(app, host="0.0.0.0", port=8000)
