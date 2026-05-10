@@ -179,19 +179,9 @@ graph TD
 * `conda activate churn_env2`
 * `pip install -r requirements_churn_env.txt`
 
-3. **Configurar el Acceso al Almacenamiento (Remoto):**
-(Esto asegura que DVC apunte al servidor correcto)
-* `dvc remote modify origin url s3://dvc`
-* `dvc remote modify origin endpointurl https://dagshub.com/JuanManuelResquin84/Proyecto_AndesLink.s3`
-
-4. **Autenticación (Vital para evitar error de Credenciales):**
-(Ejecute el siguiente comando para que DVC pueda identificarse ante DagsHub)
-* `dvc remote modify origin --local access_key_id TU_USER_NAME`
-* `dvc remote modify origin --local secret_access_key TU_TOKEN_DAGSHUB`
-> Nota: Reemplace TU_USER_NAME por su usuario de DagsHub y TU_TOKEN_DAGSHUB por su token personal (disponible en DagsHub -> Settings -> Tokens)
-
-5. **Descargar datos y modelos (DVC):** 
-* `dvc pull -r origin`
+3. **Descargar Datos y Modelos (Sincronización):**
+(En lugar de configurar DVC manualmente, ejecute el siguiente comando para descargar los archivos pesados (CSV y modelos .pkl) directamente)
+* `dagshub download JuanManuelResquin84/Proyecto_AndesLink`
 
 6. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
 
