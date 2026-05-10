@@ -170,23 +170,33 @@ graph TD
 # **ANEXO: CÓMO REPRODUCIR EL PROYECTO**
 
 1. **Clonar el repositorio:** `git clone https://github.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.git`
-Asegurate de estar en la carpeta del proyecto: `cd Portafolio_03_Proyecto_AndesLink_MLOps`
+(Asegurate de estar en la carpeta del proyecto) 
+`cd Portafolio_03_Proyecto_AndesLink_MLOps`
 
 2. **Configurar el entorno:** 
 * `conda create -n churn_env2 python=3.10 -y`
 * `conda activate churn_env2`
 * `pip install -r requirements_churn_env.txt`
 
-3. **Autenticación con DagsHub (Obligatorio para evitar error MD5):**
-Para que el comando dvc pull tenga permisos de acceso al almacenamiento remoto, ejecute:
-(Siga el enlace que aparecerá en la terminal para autorizar el acceso. Esto vincula su entorno local con el repositorio de datos).
-`dagshub setup`
+3. **Configurar el Acceso al Almacenamiento (Remoto):**
+(Esto asegura que DVC apunte al servidor correcto)
+`dvc remote modify origin url s3://dvc`
+`dvc remote modify origin endpointurl https://dagshub.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.dvc`
 
-4. **Descargar datos y modelos (DVC):** 
+4. **Autenticación (Vital para evitar error de Credenciales):**
+(Ejecute el siguiente comando para que DVC pueda identificarse ante DagsHub)
+`dvc remote modify origin --local access_key_id TU_USER_NAME`
+`dvc remote modify origin --local secret_access_key TU_TOKEN_DAGSHUB`
+> Nota: Reemplace TU_USER_NAME por su usuario de DagsHub y TU_TOKEN_DAGSHUB por su token personal (disponible en DagsHub -> Settings -> Tokens)
+
+5. **Descargar datos y modelos (DVC):** 
 `dvc pull -r origin`
 
-5. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
+6. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
 
-6. **Lanzar la API de Inferencia:** `python main.py`
+7. **Lanzar la API de Inferencia:** 
+`python main.py`
 
-7. **Probar API: ingresando a la Interfaz de Prueba** `http://localhost:8000/docs`. (Una vez que el servidor esté activo, acceda a la documentación interactiva para realizar predicciones en tiempo real enviando un JSON de prueba)
+8. **Probar API: ingresando a la Interfaz de Prueba** 
+`http://localhost:8000/docs`
+(Una vez que el servidor esté activo, acceda a la documentación interactiva para realizar predicciones en tiempo real enviando un JSON de prueba)
