@@ -181,7 +181,7 @@ graph TD
 3. **Configurar el Acceso al Almacenamiento (Remoto):**
 (Esto asegura que DVC apunte al servidor correcto)
 `dvc remote modify origin url s3://dvc`
-`dvc remote modify origin endpointurl https://dagshub.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.dvc`
+`dvc remote modify origin endpointurl https://dagshub.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps`
 
 4. **Autenticación (Vital para evitar error de Credenciales):**
 (Ejecute el siguiente comando para que DVC pueda identificarse ante DagsHub)
