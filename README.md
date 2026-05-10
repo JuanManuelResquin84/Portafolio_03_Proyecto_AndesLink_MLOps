@@ -181,7 +181,7 @@ graph TD
 
 3. **Descargar Datos y Modelos (Sincronización):**
 (En lugar de configurar DVC manualmente, ejecute el siguiente comando para descargar los archivos pesados (CSV y modelos .pkl) directamente)
-* `dagshub download JuanManuelResquin84/Proyecto_AndesLink`
+* `dagshub download JuanManuelResquin84/Proyecto_AndesLink . .`
 
 4. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
 
