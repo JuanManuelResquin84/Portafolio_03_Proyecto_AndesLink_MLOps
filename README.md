@@ -166,3 +166,9 @@ graph TD
 ![3](reports/3.png)
 ![4](reports/4.png)
 
+# **ANEXO: CÓMO REPRODUCIR EL PROYECTO**
+1. **Clonar repo:** `gh repo clone JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps`
+2. **Entorno:** `pip install -r requirements_churn_env` (Tengo como otra opción el entorno de conda environment_churn_env`)
+3. **Descargar datos/modelos:** `dvc pull -r origin`
+4. **Entrenar:** Ejecutar `02_Modelado_AndesLink.ipynb` (esto registrará un nuevo 'run' en MLflow).
+5. **Probar API:** `python main.py` y entrar a `http://localhost:8000/docs`.
