@@ -169,7 +169,7 @@ graph TD
 
 # **ANEXO: CÓMO REPRODUCIR EL PROYECTO**
 
-1. **Clonar el repositorio:** `gh repo clone JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps`
+1. **Clonar el repositorio:** `git clone JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps`
 
 2. **Configurar el entorno:** *(Se recomienda usar Python 3.10+ y activar el entorno churn_env)* `pip install -r requirements_churn_env.txt`
 
