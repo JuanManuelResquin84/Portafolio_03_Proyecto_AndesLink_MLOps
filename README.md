@@ -170,16 +170,12 @@ graph TD
 # **ANEXO: CÓMO REPRODUCIR EL PROYECTO**
 
 1. **Clonar el repositorio:** `git clone https://github.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.git`
-
-2. Asegurate de estar en la carpeta del proyecto: `cd Portafolio_03_Proyecto_AndesLink_MLOps`
+Asegurate de estar en la carpeta del proyecto: `cd Portafolio_03_Proyecto_AndesLink_MLOps`
 
 2. **Configurar el entorno:** 
-
 * `conda create -n churn_env2 python=3.10 -y`
-
 * `conda activate churn_env2`
-
-*(Se recomienda usar Python 3.10+ y activar el entorno churn_env)* `pip install -r requirements_churn_env.txt`
+* `pip install -r requirements_churn_env.txt`
 
 3. **Descargar datos y modelos (DVC):** `dvc pull -r origin`
 
