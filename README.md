@@ -178,3 +178,5 @@ graph TD
 4. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
 
 5. **Lanzar la API de Inferencia:** `python main.py`
+
+6. **Probar API: ingresando a la Interfaz de Prueba** `http://localhost:8000/docs`. (Una vez que el servidor esté activo, acceda a la documentación interactiva para realizar predicciones en tiempo real enviando un JSON de prueba)
