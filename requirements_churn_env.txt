@@ -16,3 +16,5 @@ dvc-s3
 fastapi
 uvicorn
 python-dotenv
+
+ipykernel
