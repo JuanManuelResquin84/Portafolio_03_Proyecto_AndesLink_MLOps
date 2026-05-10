@@ -9,6 +9,7 @@
 
 # **OBJETIVO**
 ### Este proyecto implementa un sistema de MLOps de extremo a extremo para predecir la pérdida de clientes (Churn) en AndesLink. El sistema no solo analiza datos, sino que gestiona el ciclo de vida del modelo mediante el registro de experimentos, control de versiones y despliegue de una API.
+### **Limitaciones del Proyecto:** El dataset utilizado es sintético, por lo que carece de factores externos reales (estacionalidad, cambios macroeconómicos o acciones de la competencia) que influyen en el Churn. El modelo es una base sólida, pero requeriría re-entrenamiento con datos reales de producción para ajustar los umbrales de decisión.
 
 # **TECNOLOGÍAS Y ENTORNO**
 
@@ -167,8 +168,13 @@ graph TD
 ![4](reports/4.png)
 
 # **ANEXO: CÓMO REPRODUCIR EL PROYECTO**
-1. **Clonar repo:** `gh repo clone JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps`
-2. **Entorno:** `pip install -r requirements_churn_env`
-3. **Descargar datos/modelos:** `dvc pull -r origin`
-4. **Entrenar:** Ejecutar `02_Modelado_AndesLink.ipynb` (esto registrará un nuevo 'run' en MLflow).
-5. **Probar API:** `python main.py` y entrar a `http://localhost:8000/docs`.
+
+1. **Clonar el repositorio:** `gh repo clone JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps`
+
+2. **Configurar el entorno:** *(Se recomienda usar Python 3.10+ y activar el entorno churn_env)* `pip install -r requirements_churn_env.txt`
+
+3. **Descargar datos y modelos (DVC):** `dvc pull -r origin`
+
+4. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
+
+5. **Lanzar la API de Inferencia:** `python main.py`
