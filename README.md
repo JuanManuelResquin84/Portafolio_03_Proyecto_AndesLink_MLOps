@@ -177,10 +177,16 @@ Asegurate de estar en la carpeta del proyecto: `cd Portafolio_03_Proyecto_AndesL
 * `conda activate churn_env2`
 * `pip install -r requirements_churn_env.txt`
 
-3. **Descargar datos y modelos (DVC):** `dvc pull -r origin`
+3. **Autenticación con DagsHub (Obligatorio para evitar error MD5):**
+Para que el comando dvc pull tenga permisos de acceso al almacenamiento remoto, ejecute:
+(Siga el enlace que aparecerá en la terminal para autorizar el acceso. Esto vincula su entorno local con el repositorio de datos).
+`dagshub setup`
 
-4. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
+4. **Descargar datos y modelos (DVC):** 
+`dvc pull -r origin`
 
-5. **Lanzar la API de Inferencia:** `python main.py`
+5. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
 
-6. **Probar API: ingresando a la Interfaz de Prueba** `http://localhost:8000/docs`. (Una vez que el servidor esté activo, acceda a la documentación interactiva para realizar predicciones en tiempo real enviando un JSON de prueba)
+6. **Lanzar la API de Inferencia:** `python main.py`
+
+7. **Probar API: ingresando a la Interfaz de Prueba** `http://localhost:8000/docs`. (Una vez que el servidor esté activo, acceda a la documentación interactiva para realizar predicciones en tiempo real enviando un JSON de prueba)
