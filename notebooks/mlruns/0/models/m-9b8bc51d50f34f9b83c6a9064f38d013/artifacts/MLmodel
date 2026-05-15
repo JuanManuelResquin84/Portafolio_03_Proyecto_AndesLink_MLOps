@@ -1,0 +1,24 @@
+artifact_path: "file:///e:/CIENCIA DE DATOS E IA/2-SEGUNDO A\xD1O/SEGUNDO CUATRIMESTRE/2-\
+  \ LABORATORIO DE MINERIA Y DATOS/Proyecto_AndesLink/notebooks/mlruns/0/models/m-9b8bc51d50f34f9b83c6a9064f38d013/artifacts"
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.20
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.4.2
+    skops_trusted_types: null
+mlflow_version: 3.12.0
+model_id: m-9b8bc51d50f34f9b83c6a9064f38d013
+model_size_bytes: 509031
+model_uuid: m-9b8bc51d50f34f9b83c6a9064f38d013
+prompts: null
+run_id: 986a344fc7724c3ab7e42dfdcd85e042
+utc_time_created: '2026-05-14 21:22:35.036142'
