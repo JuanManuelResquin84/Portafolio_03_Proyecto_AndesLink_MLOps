@@ -26,33 +26,28 @@
 # **ARQUITECTURA DE SOLUCIÓN**
 
 ```mermaid
-
 %%{init: {'theme': 'dark'}}%%
 graph TD
     DATA[(Dataset CSV)] --> EDA["01_AndesLink.ipynb (EDA)"]
     
-    EDA --> MODEL[Entrenamiento del Model(Pycaret)]
+    EDA --> MODEL["Entrenamiento del Modelo (Pycaret)"]
     
-    subgraph MLOps_Stack [Gestión en DagsHub]
-        TRACK[MLflow Tracking]
-        REG[Model Registry v1]
+    subgraph MLOps_Stack ["Gestión en DagsHub"]
+        TRACK["MLflow Tracking"]
+        REG["Model Registry v1"]
     end
     
     MODEL --> TRACK
     TRACK --> REG
     
-    subgraph Artefactos [Producción]
-        P1(model.pkl)
-        P2(scaler.pkl)
-        P3(encoder.pkl)
+    subgraph Artefactos ["Producción"]
+        P1["model.pkl"]
     end
     
     REG --> P1
-    MODEL --> P2
-    MODEL --> P3
 
-    P1 & P2 & P3 --> API(FastAPI App)
-    API --> RES{Predicción}
+    P1 --> API["FastAPI App"]
+    API --> RES{"Predicción"}
 ```
 
 # **FASE 1:** Análisis Exploratorio (EDA) (01_AndesLink.ipynb)
