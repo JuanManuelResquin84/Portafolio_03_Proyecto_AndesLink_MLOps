@@ -137,9 +137,7 @@ graph TD
 
 ### **ARTEFACTOS REGISTRADOS**
 ### Los componentes críticos se encuentran versionados:
-* **model.pkl:** El motor de decisión (Regresión Logística).
-* **scaler_andeslink.pkl:** Escalador Robusto para datos numéricos.
-* **X_columns.pkl:** Lista de columnas procesadas para asegurar la integridad de la matriz.
+* **model.pkl:** El motor de decisión (GradientBoostingClassifier).
 
 ![1](reports/1.png)
 ![2](reports/2.png)
