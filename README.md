@@ -99,15 +99,6 @@ graph TD
 
 ### Y crear planes de fidelización para los clientes que llevan menos de dos años con nosotros. 
 
-# **Selección del Modelo**
-### Tras evaluar 14 modelos para el Proyecto AndesLink, seleccione la de Regresión Logística (lr) como la opción más robusta. Este modelo logra el equilibrio, alcanzando un **F1-Score de 0.60** y con los índices **Kappa (0.3508)** y **MCC (0.3624)** más altos.
-
-### A diferencia de otros algoritmos que presentan un sesgo hacia una sola métrica, la de Regresión Logística garantiza un **Recall del 71.2%**, permitiendo capturar a la gran mayoría de clientes en riesgo de abandono, mientras mantiene una precisión suficiente para optimizar los recursos de fidelización y reducir el impacto de los falsos positivos.
-
-### **Próximos pasos:** Con la base de datos validada, se procedere la fase de 02_Modelado, donde realizare el ajuste de hiperparámetros y el registro de experimentos mediante MLflow.
-
-![tabla_comparativa_modelos](reports/tabla_comparativa_modelos.png)
-
 
 # **FASE 2:** 
 # **Análisis Final**
@@ -115,7 +106,7 @@ graph TD
 
 ### Si comparamos el modelo final contra los mejores del "podio" inicial:
 
-![tabla_comparativa_modelos_final](reports/tabla_comparativa_modelos_final.png)
+![tabla_comparativa_modelos](reports/tabla_comparativa_modelos.png)
 
 * **Accuracy (0.7353 vs 0.7114):** Lograste subir más de 2 puntos porcentuales la precisión general del modelo.
 
