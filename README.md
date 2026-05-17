@@ -29,9 +29,9 @@
 
 %%{init: {'theme': 'dark'}}%%
 graph TD
-    DATA[(Dataset CSV)] --> EDA["01_AndesLink.ipynb (EDA + Selección)"]
+    DATA[(Dataset CSV)] --> EDA["01_AndesLink.ipynb (EDA)"]
     
-    EDA --> MODEL[Entrenamiento del Modelo]
+    EDA --> MODEL[Entrenamiento del Model(Pycaret)]
     
     subgraph MLOps_Stack [Gestión en DagsHub]
         TRACK[MLflow Tracking]
