@@ -12,19 +12,15 @@ app = FastAPI(
     version="2.0"
 )
 
-# Rutas de archivos (Caminos relativos desde src/ hasta models/)
+# Rutas de archivos
 BASE_DIR = os.path.dirname(__file__)
-MODEL_PATH = os.path.join(BASE_DIR, '..', 'models', 'modelo_churn_lrV2_andeslink.pkl')
-SCALER_PATH = os.path.join(BASE_DIR, '..', 'models', 'scaler_andeslink.pkl')
-COLS_PATH = os.path.join(BASE_DIR, '..', 'models', 'X_columns.pkl')
-DNI_PATH = os.path.join(BASE_DIR, '..', 'models', 'modelo_churn_lrV2_andeslink.json')
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'models', 'modelo_churn_GBC_andeslink.pkl')
+DNI_PATH = os.path.join(BASE_DIR, '..', 'models', 'modelo_churn_GBC_andeslink.json')
 
-# Carga de artefactos
+# Carga del único artefacto (Pipeline/Modelo unificado)
 model = joblib.load(MODEL_PATH)
-scaler = joblib.load(SCALER_PATH)
-X_columns = joblib.load(COLS_PATH)
 
-# Definición del Esquema de Entrada (Basado en tu entrenamiento real)
+# Definición del Esquema de Entrada
 class Cliente(BaseModel):
     tenure_months: int
     monthly_charge: float
@@ -42,7 +38,7 @@ class Cliente(BaseModel):
     customer_age: int
     is_promo: int             
 
-# Ruta de Inicio: Carga el DNI (Metadatos) del modelo
+# Ruta de Inicio
 @app.get("/")
 def inicio():
     try:
@@ -60,30 +56,21 @@ def inicio():
 # Ruta de Predicción
 @app.post("/predict")
 def predecir(cliente: Cliente):
-    # Convertir el objeto recibido a DataFrame de una fila
-    df = pd.DataFrame([cliente.dict()])
+    # Convertir a DataFrame de una fila
+    df = pd.DataFrame([cliente.model_dump()])
     
-    # Procesamiento de variables categóricas (get_dummies)
-    # reindex asegura que las columnas sean exactamente las que el modelo espera
-    df_proc = pd.get_dummies(df).reindex(columns=X_columns, fill_value=0)
+    # Predicción de clase usando el umbral genérico del modelo (0.5 por defecto)
+    clase = int(model.predict(df)[0])
     
-    # Escalamiento de datos
-    df_escalado = scaler.transform(df_proc)
-    
-    # Cálculo de probabilidad
-    prob = float(model.predict_proba(df_escalado)[:, 1][0])
-    
-    # Aplicación del umbral óptimo definido en tu notebook (0.45)
-    clase = 1 if prob >= 0.45 else 0
+    # Cálculo de la probabilidad asociada
+    prob = float(model.predict_proba(df)[:, 1][0])
     
     return {
         "score_fuga": round(prob, 4),
-        "umbral_aplicado": 0.45,
         "prediccion": "Fuga (1)" if clase == 1 else "Se queda (0)",
         "accion_recomendada": "Llamar para retención" if clase == 1 else "Mantener monitoreo"
     }
     
 if __name__ == "__main__":
     import uvicorn
-    # Arrancamos el servidor en el puerto 8000
     uvicorn.run(app, host="0.0.0.0", port=8000)
