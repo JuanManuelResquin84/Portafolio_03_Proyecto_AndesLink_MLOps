@@ -29,7 +29,9 @@
 
 %%{init: {'theme': 'dark'}}%%
 graph TD
-    DATA[(Dataset CSV)] --> EDA+Selección de Modelo(01_AndesLink.ipynb)
+    DATA[(Dataset CSV)] --> EDA["01_AndesLink.ipynb (EDA + Selección)"]
+    
+    EDA --> MODEL[Entrenamiento del Modelo]
     
     subgraph MLOps_Stack [Gestión en DagsHub]
         TRACK[MLflow Tracking]
@@ -41,6 +43,8 @@ graph TD
     
     subgraph Artefactos [Producción]
         P1(model.pkl)
+        P2(scaler.pkl)
+        P3(encoder.pkl)
     end
     
     REG --> P1
@@ -56,7 +60,7 @@ graph TD
 ### Se realizó una auditoría de calidad sobre 5000 registros.
 
 
-## **Distribución de Clientes (Gráfico de Barras)**
+## **Distribución de Clientes**
 
 ### Este gráfico mide el desequilibrio de clases en el dataset.
 
@@ -69,7 +73,7 @@ graph TD
 ![distribucion_clientes](reports/distribucion_clientes.png)
 
 
-# **Promedio de Tickets de Soporte vs. Churn (Barplot con error)**
+# **Promedio de Tickets de Soporte vs. Churn**
 
 ### Este gráfico muestra la relación entre la frustración técnica/administrativa y la salida del cliente.
 
@@ -81,7 +85,7 @@ graph TD
 
 ![tickets_soporte_vs_churn](reports/tickets_soporte_vs_churn.png)
 
-# **Meses de Antigüedad vs. Churn (Boxplot)**
+# **Meses de Antigüedad vs. Churn**
 
 ### Aquí comparamos la "lealtad" en tiempo. El boxplot muestra la mediana (la línea negra central) y la dispersión del 50% de los datos (la caja azul).
 
