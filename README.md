@@ -14,12 +14,11 @@
 # **TECNOLOGÍAS Y ENTORNO**
 
 * **Entorno:** 
-  * pycaret_env (utilizado para el Norebook de 01_EDA_AndesLink.ipynb), ya que tenia conflictos con la libreria de MLflow, pero me sirvio para decidirme por el modelo de entrenamiento.
-  * churn_env (utilizado para el Norebook de 02_Modelado_AndesLink.ipynb), Optimizado para MLflow y producción.
+    * churn_env2 (utilizado para el Notebook de 01_AndesLink.ipynb), Optimizado para MLflow y producción.
 
 * **Seguimiento de Experimentos:** MLflow integrado con DagsHub.
 
-* **Modelado:** Scikit-Learn (Logistic Regression, Random Forest, Naive Bayes).
+* **Modelado:** Scikit-Learn (Gradient Boosting Classifier, CatBooosting Cassifiera, Ada Boost Classifier).
 
 * **API Framework:** FastAPI con documentación interactiva (Swagger).
 
@@ -30,8 +29,7 @@
 
 %%{init: {'theme': 'dark'}}%%
 graph TD
-    DATA[(Dataset CSV)] --> EDA(01_EDA_AndesLink.ipynb)
-    EDA --> MODEL(02_Modelado_AndesLink.ipynb)
+    DATA[(Dataset CSV)] --> EDA+Selección de Modelo(01_AndesLink.ipynb)
     
     subgraph MLOps_Stack [Gestión en DagsHub]
         TRACK[MLflow Tracking]
@@ -43,8 +41,6 @@ graph TD
     
     subgraph Artefactos [Producción]
         P1(model.pkl)
-        P2(scaler_andeslink.pkl)
-        P3(X_columns.pkl)
     end
     
     REG --> P1
@@ -55,7 +51,7 @@ graph TD
     API --> RES{Predicción}
 ```
 
-# **FASE 1:** Análisis Exploratorio (EDA) (01_EDA_AndesLink.ipynb)
+# **FASE 1:** Análisis Exploratorio (EDA) (01_AndesLink.ipynb)
 
 ### Se realizó una auditoría de calidad sobre 5000 registros.
 
@@ -114,39 +110,32 @@ graph TD
 ![tabla_comparativa_modelos](reports/tabla_comparativa_modelos.png)
 
 
-# **FASE 2:** Experimentación y MLOps (02_Modelado_AndesLink.ipynb)
-### En este proceso ya utilizo el entorno churn_env para el registro oficial en MLflow y exportación de los experiementos y modelos.
+# **FASE 2:** 
+# **Análisis Final**
+ **1. Superioridad Estadística Real**
 
-### A diferencia de un flujo tradicional, aquí se implementó un gobierno de modelos:
-* **Tracking:** Cada entrenamiento (Naive Bayes, Random Forest, Regresión Logística) quedó registrado en DagsHub con sus métricas de Accuracy, Recall y F1-Score.
-* **Modelo Ganador:** Se seleccionó Logistic Regression (V2) por su robustez, aplicando un umbral personalizado de 0.45 para maximizar la captura de clientes en riesgo.
-* **Model Registry:** El modelo fue promovido a la pestaña de Models en DagsHub para control de versiones.
-
-# **Conclusiones**
-
-### Para un problema de Churn, yo me sigo quedando con el **Modelo Regresión Logistica**, basándome en los siguientes datos:
-
-### Se dio un duelo en los modelos de Regresión Logística y Naive Bayes, ambos modelos son los mejores capturando clientes que se van, con un Recall idéntico de 0.7911. Sin embargo, la de **Regresión Logística con umbral 0.45** gana por calidad de predicción:
-
-### **Mejor Precision: 0.496 vs 0.**478** del Naive Bayes. Esto significa que, al alertar sobre el Churn, la de Regresión Logística se equivoca menos.
-
-### **Mejor F1-Score: Logro 0.609**, que es el valor más alto de los modelos, logrando un equilibrio entre no dejar escapar clientes y no saturar el área de fidelización con falsas alarmas.
-
-### **Mejor Accuracy: 0.656 vs 0.636**, aunque no es la métrica principal, siempre es preferible un modelo que acierte más en el total de los casos.
-
-### Descarte el Modelo de **RandomForest**, aunque tenga el Accuracy más alto (0.693), pero su Recall es muy pobre (0.65). Para AndesLink, esto significa dejar que un 35% de los clientes se vayan sin siquiera detectarlos. Es un modelo demasiado conservador.
-
-### El Modelo **Logistic Regression** con umbral de 0.55 vs 0.45, el primero tienen un buen Accuracy (0.70 vs 0.67), pero su nivel de Recall (0.67 vs 0.72) no alcanzan la meta de detección.
+### Si comparamos el modelo final contra los mejores del "podio" inicial:
 
 ![tabla_comparativa_modelos_final](reports/tabla_comparativa_modelos_final.png)
 
-![comparativa_matrices_confusion](reports/comparativa_matrices_confusion.png)
+* **Accuracy (0.7353 vs 0.7114):** Lograste subir más de 2 puntos porcentuales la precisión general del modelo.
+
+* **Kappa (0.3819 vs 0.3241):** Esta es la métrica más importante. Un salto a 0.38 indica que el modelo es significativamente más robusto y sus aciertos no son producto del azar, superando con creces a los modelos base.
+
+**2. Estabilidad mediante el Tuneo**
+
+### El modelo final es el resultado de un proceso de optimización de hiperparámetros. Mientras que los modelos del "Top" son versiones estándar, el Final ha sido ajustado específicamente para los datos de tus clientes, lo que garantiza que generalice mejor ante datos nuevos que lleguen a la API.
+
+**3. Equilibrio entre Precisión y Sensibilidad (Recall)**
+
+* Para AndesLink, el costo de perder un cliente es alto.
+* Mantienes un **Precision de 0.6383**, lo que significa que 6 de cada 10 alertas de abandono serán correctas.
+* Logras un **Recall de 0.5147**, capturando a más de la mitad de los clientes que realmente se van a fugar.
 
 # **Conclusión Final**
-### El modelo Logistic_Regression_V2_Threshold_0.45 es el más inteligente para el negocio porque:
-* Iguala la capacidad de detección máxima (Recall 79%).
-* Es más preciso que el Naive Bayes, ahorrando recursos en campañas dirigidas a personas que no pensaban irse.
-* Tiene el mejor F1-Score, lo que lo posiciona como el modelo más "maduro" del notebook 02_Modelado_AndesLink.ipynb hasta el momento.
+
+## **Se selecciona el GradientBoostingClassifier finalizado tras un proceso de optimización, ya que presenta el mejor balance de métricas en el experimento, destacando un Accuracy de 0.7353 y un Coeficiente Kappa de 0.38. Este modelo supera a las versiones del TOP 3, proporcionando a AndesLink una herramienta confiable para identificar proactivamente el churn de clientes con una precisión superior al 63%.**
+
 
 # **FASE 3:** Implementación de API (FastAPI)
 
@@ -183,7 +172,7 @@ graph TD
 (En lugar de configurar DVC manualmente, ejecute el siguiente comando para descargar los archivos pesados (CSV y modelos .pkl) directamente)
 * `dagshub download JuanManuelResquin84/Proyecto_AndesLink . .`
 
-4. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `02_Modelado_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
+4. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `01_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
 
 5. **Lanzar la API de Inferencia:** 
 * `python src/main.py`
