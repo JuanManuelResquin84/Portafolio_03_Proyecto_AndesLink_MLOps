@@ -14,16 +14,16 @@ jobs:
     - name: Checkout del código
       uses: actions/checkout@v4
 
-    # Configura DVC en la máquina virtual de GitHub
     - name: Configurar DVC
       uses: iterative/setup-dvc@v1
 
-    # Configura las credenciales de DagsHub en DVC usando Secrets seguros
+    # Versión simplificada para DVC remoto
     - name: Configurar almacenamiento remoto de DVC
       run: |
-        dvc remote modify origin --projecturl https://dagshub.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.dvc
-        dvc remote modify origin --user ${{ secrets.DAGSHUB_USERNAME }}
-        dvc remote modify origin --password ${{ secrets.DAGSHUB_TOKEN }}
+        dvc remote modify origin url https://dagshub.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.dvc
+        dvc remote modify origin --local auth basic
+        dvc remote modify origin --local user ${{ secrets.DAGSHUB_USERNAME }}
+        dvc remote modify origin --local password ${{ secrets.DAGSHUB_TOKEN }}
 
     - name: Configurar Python
       uses: actions/setup-python@v5
@@ -36,7 +36,6 @@ jobs:
         pip install -r requirements_churn_env2.txt
         pip install pytest
 
-    # Se descarga el archivo .pkl REAL desde DagsHub antes del test
     - name: Descargar artefactos de DVC
       run: |
         dvc pull -r origin
