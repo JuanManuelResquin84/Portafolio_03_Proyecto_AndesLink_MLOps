@@ -1,0 +1,5 @@
+outs:
+- md5: 471d2e119bf185da08b4a0251c9da735
+  size: 521492
+  hash: md5
+  path: churn_procesado.csv
