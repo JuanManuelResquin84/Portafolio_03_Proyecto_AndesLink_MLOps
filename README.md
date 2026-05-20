@@ -154,7 +154,7 @@ graph TD
 2. **Configurar el entorno:** 
 * `conda create -n churn_env2 python=3.10 -y`
 * `conda activate churn_env2`
-* `pip install -r requirements_churn_env.txt`
+* `pip install -r requirements_churn_env2.txt`
 
 3. **Descargar Datos y Modelos (Sincronización):**
 (En lugar de configurar DVC manualmente, ejecute el siguiente comando para descargar los archivos pesados (CSV y modelos .pkl) directamente)
