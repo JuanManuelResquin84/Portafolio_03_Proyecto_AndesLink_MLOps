@@ -1,0 +1,5 @@
+outs:
+- md5: 8189adebf78625581f9a97744eb61c96
+  size: 1959
+  hash: md5
+  path: scaler_andeslink.pkl
