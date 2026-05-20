@@ -1,0 +1,35 @@
+name: CI Proyecto AndesLink
+
+# Eventos que disparan la ejecución
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Clona tu código en la máquina virtual de GitHub
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    # 2. Configura Python en la máquina virtual
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    # Instala todas las librerías de tu receta requirements.txt
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements_churn_env2.txt
+        pip install pytest  # Nos aseguramos de que pytest esté listo
+
+    # Corre el test que acabás de crear en la carpeta tests/
+    - name: Ejecutar pruebas con Pytest
+      run: |
+        pytest
