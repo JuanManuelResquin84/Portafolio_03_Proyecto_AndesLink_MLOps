@@ -157,10 +157,13 @@ graph TD
 * `pip install -r requirements_churn_env2.txt`
 
 3. **Descargar Datos y Modelos (Sincronización):**
-(En lugar de configurar DVC manualmente, ejecute el siguiente comando para descargar los archivos pesados (CSV y modelos .pkl) directamente)
 * `dagshub download JuanManuelResquin84/Proyecto_AndesLink . .`
 
-4. **Ejecutar entrenamiento:** Abrir y ejecutar el notebook `01_AndesLink.ipynb`. Esto registrará automáticamente un nuevo experimento en **MLflow**.
+4. **Ejecutar entrenamiento:** 
+Ejecutar el Pipeline de Entrenamiento (Opcional):
+Si desea volver a procesar los datos y reentrenar el modelo generando un nuevo experimento en MLflow, ejecute en orden:
+`python src/prepare.py`
+`python src/train.py`
 
 5. **Lanzar la API de Inferencia:** 
 * `python src/main.py`
