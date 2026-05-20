@@ -38,9 +38,11 @@ def entrenar_modelo():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
     joblib.dump(scaler, SCALER_OUTPUT_PATH)
-
+    
+    mlflow.set_experiment("AndesLink_Production")
+    
     # Configuración de MLflow
-    with mlflow.start_run(run_name="Gradient_Boosting_Train"):
+    with mlflow.start_run(run_name="Gradient_Boosting_Train_V1"):
         params = {
 
             "n_estimators": 100,
@@ -79,7 +81,12 @@ def entrenar_modelo():
         
         joblib.dump(model, MODEL_OUTPUT_PATH)
         mlflow.log_artifact(MODEL_OUTPUT_PATH)
-        
+        mlflow.sklearn.log_model(
+            sk_model=model, 
+        artifact_path="model", 
+        registered_model_name="modelo_churn_GBC_andeslink"
+        )
+
         # GUARDAR EL ARCHIVO JSON LOCAL 
         print(f"Guardando métricas locales en: {METRICS_OUTPUT_PATH}...")
         with open(METRICS_OUTPUT_PATH, "w") as f:
