@@ -1,0 +1,5 @@
+outs:
+- md5: 5e5e287344e52629ee44dafdcf668644
+  size: 188636
+  hash: md5
+  path: modelo_churn_GBC_andeslink.pkl
