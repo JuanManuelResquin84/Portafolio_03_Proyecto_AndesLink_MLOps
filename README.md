@@ -167,4 +167,4 @@ graph TD
 
 6. **Probar API: ingresando a la Interfaz de Prueba** 
 * `http://localhost:8000/docs`
-(Una vez que el servidor esté activo, acceda a la documentación interactiva para realizar predicciones en tiempo real enviando un JSON de prueba)...
+(Una vez que el servidor esté activo, acceda a la documentación interactiva para realizar predicciones en tiempo real enviando un JSON de prueba)
