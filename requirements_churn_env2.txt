@@ -17,4 +17,5 @@ fastapi
 uvicorn
 python-dotenv
 
+# Cerebro
 ipykernel
