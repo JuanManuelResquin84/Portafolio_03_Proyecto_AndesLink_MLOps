@@ -1,4 +1,4 @@
-name: CI Proyecto AndesLink
+name: CI Proyecto AndesLink Final
 
 on:
   push:
@@ -17,10 +17,9 @@ jobs:
     - name: Configurar DVC
       uses: iterative/setup-dvc@v1
 
-    # Versión simplificada para DVC remoto
+    # Solo le pasamos las llaves de autenticación sobre el origen que ya viene configurado en tu git
     - name: Configurar almacenamiento remoto de DVC
       run: |
-        dvc remote modify origin url https://dagshub.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.dvc
         dvc remote modify origin --local auth basic
         dvc remote modify origin --local user ${{ secrets.DAGSHUB_USERNAME }}
         dvc remote modify origin --local password ${{ secrets.DAGSHUB_TOKEN }}
