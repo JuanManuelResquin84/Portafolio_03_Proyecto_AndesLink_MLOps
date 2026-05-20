@@ -1,6 +1,5 @@
 name: CI Proyecto AndesLink
 
-# Eventos que disparan la ejecución
 on:
   push:
     branches: [ main ]
@@ -12,24 +11,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Clona tu código en la máquina virtual de GitHub
     - name: Checkout del código
       uses: actions/checkout@v4
 
-    # 2. Configura Python en la máquina virtual
+    # Configura DVC en la máquina virtual de GitHub
+    - name: Configurar DVC
+      uses: iterative/setup-dvc@v1
+
+    # Configura las credenciales de DagsHub en DVC usando Secrets seguros
+    - name: Configurar almacenamiento remoto de DVC
+      run: |
+        dvc remote modify origin --projecturl https://dagshub.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.dvc
+        dvc remote modify origin --user ${{ secrets.DAGSHUB_USERNAME }}
+        dvc remote modify origin --password ${{ secrets.DAGSHUB_TOKEN }}
+
     - name: Configurar Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.10'
 
-    # Instala todas las librerías de tu receta requirements.txt
     - name: Instalar dependencias
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements_churn_env2.txt
-        pip install pytest  # Nos aseguramos de que pytest esté listo
+        pip install pytest
 
-    # Corre el test que acabás de crear en la carpeta tests/
+    # Se descarga el archivo .pkl REAL desde DagsHub antes del test
+    - name: Descargar artefactos de DVC
+      run: |
+        dvc pull -r origin
+
     - name: Ejecutar pruebas con Pytest
       run: |
         pytest
