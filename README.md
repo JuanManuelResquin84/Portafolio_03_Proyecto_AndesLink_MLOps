@@ -101,31 +101,40 @@ graph TD
 
 
 # **FASE 2:** 
-# **Análisis Final**
- **1. Superioridad Estadística Real**
-
-### Si comparamos el modelo final contra los mejores del "podio" inicial:
-
-![tabla_comparativa_modelos](reports/tabla_comparativa_modelos.png)
-
-* **Accuracy (0.7353 vs 0.7114):** Lograste subir más de 2 puntos porcentuales la precisión general del modelo.
-
-* **Kappa (0.3819 vs 0.3241):** Esta es la métrica más importante. Un salto a 0.38 indica que el modelo es significativamente más robusto y sus aciertos no son producto del azar, superando con creces a los modelos base.
-
-**2. Estabilidad mediante el Tuneo**
-
-### El modelo final es el resultado de un proceso de optimización de hiperparámetros. Mientras que los modelos del "Top" son versiones estándar, el Final ha sido ajustado específicamente para los datos de tus clientes, lo que garantiza que generalice mejor ante datos nuevos que lleguen a la API.
-
-**3. Equilibrio entre Precisión y Sensibilidad (Recall)**
-
-* Para AndesLink, el costo de perder un cliente es alto.
-* Mantienes un **Precision de 0.6383**, lo que significa que 6 de cada 10 alertas de abandono serán correctas.
-* Logras un **Recall de 0.5147**, capturando a más de la mitad de los clientes que realmente se van a fugar.
-
 # **Conclusión Final**
+### Para ir por el camino más conservador (priorizando el cuidado del presupuesto y evitando regalar promos a gente que no se iba), tome la mejor opción que es el **modelo Gradient_Boosting_Train_V1**. Con el ajuste de hiperparámetros y el umbral óptimo de 0.45, logrando un balance ideal para una estrategia de **"costo controlado"**.
 
-## **Se selecciona el GradientBoostingClassifier finalizado tras un proceso de optimización, ya que presenta el mejor balance de métricas en el experimento, destacando un Accuracy de 0.7353 y un Coeficiente Kappa de 0.38. Este modelo supera a las versiones del TOP 3, proporcionando a AndesLink una herramienta confiable para identificar proactivamente el churn de clientes con una precisión superior al 63%.**
+### **Justificación detallada de por qué este es el modelo para tu negocio:**
+> Es el más "Tacaño" y eficiente (Mayor Precisión). Evitando **"gastar tanto en campaña"**. La métrica clave que controla el desperdicio de dinero es la Precisión.
 
+> La versión V1 del modelo GBC alcanzó una **Precisión de 0.5714 (57.14%)**.
+
+> **Significa en la vida real:** De cada 100 personas a las que el modelo les ponga el cartel de "¡Ojo, este cliente se va!", más de 57 realmente se van a ir.
+
+> **El beneficio económico:** Minimizás los Falsos Positivos. No desperdiciás presupuesto reglando descuentos o llamando a clientes fieles que no tenían ninguna intención de abandonar el servicio.
+
+> Se mejoró drásticamente la cobertura (Adiós a la Trampa del Recall). Con la **versión V1**, el **Recall subió a 0.5529 (55.29%)**.
+
+> **Logrando romper el cuello de botella:** ahora atrapamos a más de la mitad de los clientes en riesgo real de fuga, pero sin volvernos masivos ni permisivos. Mantenemos el tiro de precisión.
+
+> **Consistencia Estadística (Kappa Alto y Buen Accuracy)**
+
+> **El Accuracy (0.7070)** demuestra que el modelo acierta globalmente en 7 de cada 10 casos.
+
+> **Lo más importante:** el índice Kappa llegó a 0.3419. Esto demuestra que las predicciones del modelo son sólidas y bien fundamentadas por los patrones de los datos, y no fruto del azar o del desbalance de clases.
+
+# **Resumen del plan estratégico con GBC V1:**
+
+> **Campañas Quirúrgicas:** Contactarás a un volumen moderado de clientes **(Recall ~55%)**, asegurando que el equipo de retención de AndesLink no se sature.
+
+> **Alta Efectividad:** La mayoría de los contactos serán sobre riesgos reales **(Precisión ~57%)**.
+
+> **Optimización del ROI:** El dinero que ahorramos al no emitir falsas alarmas, nos permite financiar promociones de mayor impacto o valor para los clientes que sí están en la cuerda floja, maximizando la tasa de éxito de la campaña.
+
+# **Conclusión:** Si la prioridad número uno de la empresa es optimizar cada peso invertido en retención, el **modelo Gradient_Boosting_Train_V1** es la elección financiera y técnica más inteligente.
+
+![tabla_comparativa_modelos](reports/tabla_comparativa_modelos_final.png)
+![tabla_comparativa_modelos](reports/tabla_comparativa_modelos_final2.png)
 
 # **FASE 3:** Implementación de API (FastAPI)
 
