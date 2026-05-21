@@ -25,13 +25,6 @@
 
 # **ARQUITECTURA DE SOLUCIÓN**
 
-```mermaid
-¡Totalmente! Qué buen ojo tuviste. Si dejas ese diagrama de Mermaid como estaba antes, el profesor se va a confundir porque ahí todavía figura el notebook de EDA, dice que entrenás con PyCaret (cuando ahora usás scikit-learn puro en tus scripts) y el nombre del modelo quedó genérico como model.pkl.
-
-Hay que actualizar el diagrama para que refleje tu arquitectura de producción real: la separación modular en los tres scripts dentro de la carpeta src (prepare.py, train.py, main.py) y la inclusión del escalador que le sumaste al pipeline.
-
-Aquí tenés el código de Mermaid corregido y adaptado a tu arquitectura definitiva:
-
 ```mermaid 
 %%{init: {'theme': 'dark'}}%%
 graph TD
