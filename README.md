@@ -26,28 +26,39 @@
 # **ARQUITECTURA DE SOLUCIÓN**
 
 ```mermaid
+¡Totalmente! Qué buen ojo tuviste. Si dejas ese diagrama de Mermaid como estaba antes, el profesor se va a confundir porque ahí todavía figura el notebook de EDA, dice que entrenás con PyCaret (cuando ahora usás scikit-learn puro en tus scripts) y el nombre del modelo quedó genérico como model.pkl.
+
+Hay que actualizar el diagrama para que refleje tu arquitectura de producción real: la separación modular en los tres scripts dentro de la carpeta src (prepare.py, train.py, main.py) y la inclusión del escalador que le sumaste al pipeline.
+
+Aquí tenés el código de Mermaid corregido y adaptado a tu arquitectura definitiva:
+
+Fragmento de código
 %%{init: {'theme': 'dark'}}%%
 graph TD
-    DATA[(Dataset CSV)] --> EDA["01_AndesLink.ipynb (EDA)"]
+    DATA_RAW[(churn_sintetico.csv)] --> P_PREP["src/prepare.py (Procesamiento)"]
+    P_PREP --> DATA_PROC[(churn_procesado.csv)]
     
-    EDA --> MODEL["Entrenamiento del Modelo (Pycaret)"]
+    DATA_PROC --> P_TRAIN["src/train.py (Entrenamiento Scikit-Learn)"]
     
-    subgraph MLOps_Stack ["Gestión en DagsHub"]
-        TRACK["MLflow Tracking"]
-        REG["Model Registry v1"]
+    subgraph MLOps_Stack ["Gestión y Registro en DagsHub"]
+        TRACK["MLflow Tracking (Experimentos)"]
+        REG["MLflow Model Registry (V1 Definitivo)"]
     end
     
-    MODEL --> TRACK
+    P_TRAIN --> TRACK
     TRACK --> REG
     
-    subgraph Artefactos ["Producción"]
-        P1["model.pkl"]
+    subgraph Artefactos ["Artefactos Versionados en DVC"]
+        M1["modelo_churn_GBC_andeslink.pkl"]
+        S1["scaler_andeslink.pkl"]
     end
     
-    REG --> P1
+    REG --> M1
+    P_TRAIN --> S1
 
-    P1 --> API["FastAPI App"]
-    API --> RES{"Predicción"}
+    M1 --> API["src/main.py (FastAPI App)"]
+    S1 --> API
+    API --> RES{"Predicciones en /docs"}
 ```
 
 # **FASE 1:** Análisis Exploratorio (EDA) (01_AndesLink.ipynb)
@@ -104,7 +115,7 @@ graph TD
 # **Conclusión Final**
 ### Para ir por el camino más conservador (priorizando el cuidado del presupuesto y evitando regalar promos a gente que no se iba), tome la mejor opción que es el **modelo Gradient_Boosting_Train_V1**. Con el ajuste de hiperparámetros y el umbral óptimo de 0.45, logrando un balance ideal para una estrategia de **"costo controlado"**.
 
-### **Justificación detallada de por qué este es el modelo para tu negocio:**
+### **Justificación detallada de por qué este es el modelo para el negocio:**
 > Es el más "Tacaño" y eficiente (Mayor Precisión). Evitando **"gastar tanto en campaña"**. La métrica clave que controla el desperdicio de dinero es la Precisión.
 
 > La versión V1 del modelo GBC alcanzó una **Precisión de 0.5714 (57.14%)**.
