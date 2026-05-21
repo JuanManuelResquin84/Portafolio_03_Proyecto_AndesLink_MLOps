@@ -32,7 +32,7 @@ Hay que actualizar el diagrama para que refleje tu arquitectura de producción r
 
 Aquí tenés el código de Mermaid corregido y adaptado a tu arquitectura definitiva:
 
-Fragmento de código
+```mermaid 
 %%{init: {'theme': 'dark'}}%%
 graph TD
     DATA_RAW[(churn_sintetico.csv)] --> P_PREP["src/prepare.py (Procesamiento)"]
