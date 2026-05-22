@@ -146,22 +146,32 @@ graph TD
 
 ![tabla_comparativa_modelos](reports/tabla_comparativa_modelos_final2.png)
 
-# **FASE 3:** Implementación de API (FastAPI)
 
-### Desarrolle una API para consultas en tiempo real.
-* **Endpoints:** /predict para inferencia inmediata.
-* **Normalización:** Los datos de entrada pasan por el mismo pipeline de escalado registrado en el entrenamiento.
-* **Probabilidad de Fuga:** ~90.47% (Ejemplo validado).
-* **Acción:** Generación automática de alerta para retención.
+# **FASE 3:** Despliegue de la API de Inferencia (FastAPI) y Dockerización
 
-### **ARTEFACTOS REGISTRADOS**
-### Los componentes críticos se encuentran versionados:
-* **model.pkl:** El motor de decisión (GradientBoostingClassifier).
+## Para la puesta en producción del modelo optimizado (`Gradient_Boosting_Train_V1`), se transformó la solución en un servicio desacoplado y reproducible.
 
-![1](reports/1.png)
-![2](reports/2.png)
-![3](reports/3.png)
-![4](reports/4.png)
+* **Framework de Inferencia:** Se desarrolló una API REST utilizando **FastAPI** sustentada sobre el servidor **Uvicorn**, garantizando alta velocidad de respuesta y asincronismo para las peticiones de negocio.
+* **Endpoints Estratégicos:** El punto de acceso principal es `/predict`, el cual recibe un payload en formato JSON con las características del cliente, aplica la normalización estadística en tiempo real y devuelve la predicción.
+* **Consistencia en el Preprocesamiento:** Los datos entrantes a la API no se procesan a ciegas; son transformados exactamente por las mismas reglas del pipeline de ingeniería de datos usando el escalador guardado en la etapa de entrenamiento.
+* **Consumo Controlado:** Expone una interfaz interactiva de pruebas basada en Swagger UI (disponible nativamente en `/docs`), permitiendo que el equipo de sistemas o cualquier frontend (como un módulo de atención al cliente de AndesLink) pueda testear integraciones inmediatamente.
+
+## **Infraestructura y Reproducibilidad (DOCKER)**
+
+### Para aislar por completo la capa de aplicación y asegurar el cumplimiento del requerimiento de **Despliegue Reproducible**:
+
+* **Contenedorización (`Dockerfile`):** Se empaquetó la aplicación web basándose en una imagen oficial liviana de Python (`python:3.10-slim`), aislando todas las librerías del sistema y de ciencia de datos indicadas en los requerimientos.
+
+* **Orquestación (`docker-compose.yml`):** Se implementó Docker Compose para comandar la creación y el encendido del contenedor (`andeslink_api_container`). 
+
+* **Persistencia por Volúmenes:** La infraestructura local vincula de forma segura los artefactos binarios cargados en el host (mediante la sincronización de DagsHub) con el interior del contenedor, garantizando que el entorno productivo sea compacto, eficiente y cerrado ante modificaciones externas.
+
+## **Artefactos Versionados y Registrados**
+
+### Los componentes críticos de esta versión productiva (V1) se encuentran custodiados bajo el ecosistema DagsHub y bajo control de versiones físicas:
+
+* **`modelo_churn_GBC_andeslink.pkl`**: El motor de inferencia definitivo optimizado del *Gradient Boosting Classifier*, configurado con el umbral matemático de **0.45** para el resguardo presupuestario de la empresa.
+* **`scaler_andeslink.pkl`**: El transformador de variables con los parámetros de distribución ajustados sobre el dataset de entrenamiento, vital para evitar el *data leakage* y asegurar la fidelidad del dato ingresado a la API.
 
 # **ANEXO: CÓMO REPRODUCIR EL PROYECTO**
 
@@ -188,3 +198,11 @@ Ejecute el siguiente comando para que Docker Compose construya la imagen e inici
 Una vez que la terminal indique que el servidor Uvicorn está activo, abra su navegador e ingrese a:
 * `http://localhost:8000/docs`
 (Documentación interactiva de FastAPI para realizar predicciones enviando un JSON de prueba).
+
+![1](reports/1.png)
+
+![2](reports/2.png)
+
+![3](reports/3.png)
+
+![4](reports/4.png)
