@@ -41,7 +41,7 @@ graph TD
     P_TRAIN --> TRACK
     TRACK --> REG
     
-    subgraph Artefactos ["Artefactos Versionados en DVC"]
+    subgraph Local ["Almacenamiento Local (Volúmenes DVC)"]
         M1["modelo_churn_GBC_andeslink.pkl"]
         S1["scaler_andeslink.pkl"]
     end
@@ -49,9 +49,16 @@ graph TD
     REG --> M1
     P_TRAIN --> S1
 
-    M1 --> API["src/main.py (FastAPI App)"]
-    S1 --> API
-    API --> RES{"Predicciones en /docs"}
+    subgraph Docker_Env ["Entorno de Producción (Docker Compose)"]
+        subgraph Contenedor ["Contenedor: andeslink_api_container"]
+            API["src/main.py (FastAPI App)"]
+        end
+    end
+
+    M1 -.->|Compartido por Volumen| API
+    S1 -.->|Compartido por Volumen| API
+    
+    API --> RES{"Predicciones en localhost:8000/docs"}
 ```
 
 # **FASE 1:** Análisis Exploratorio (EDA) (01_AndesLink.ipynb)
@@ -175,6 +182,7 @@ graph TD
 4. **Construir y levantar el contenedor:** 
 Ejecute el siguiente comando para que Docker Compose construya la imagen e inicie el servicio de forma automatizada:
 * `docker compose up --build`
+
 ![5](reports/docker.png)
 
 5. **Acceder a la API de Inferencia:** 
