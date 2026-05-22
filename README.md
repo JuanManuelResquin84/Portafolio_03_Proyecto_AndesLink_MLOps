@@ -144,7 +144,6 @@ graph TD
 
 # **Conclusión:** Si la prioridad número uno de la empresa es optimizar cada peso invertido en retención, el **modelo Gradient_Boosting_Train_V1** es la elección financiera y técnica más inteligente.
 
-![tabla_comparativa_modelos](reports/tabla_comparativa_modelos_final.png)
 ![tabla_comparativa_modelos](reports/tabla_comparativa_modelos_final2.png)
 
 # **FASE 3:** Implementación de API (FastAPI)
