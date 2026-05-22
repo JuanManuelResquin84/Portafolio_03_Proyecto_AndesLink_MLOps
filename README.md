@@ -172,15 +172,12 @@ graph TD
 3. **Descargar Datos y Modelos (Sincronización):**
 * `dagshub download JuanManuelResquin84/Proyecto_AndesLink . .`
 
-4. **Ejecutar entrenamiento:** 
-Ejecutar el Pipeline de Entrenamiento (Opcional):
-Si desea volver a procesar los datos y reentrenar el modelo generando un nuevo experimento en MLflow, ejecute en orden:
-`python src/prepare.py`
-`python src/train.py`
+4. **Construir y levantar el contenedor:** 
+Ejecute el siguiente comando para que Docker Compose construya la imagen e inicie el servicio de forma automatizada:
+* `docker compose up --build`
+![5](reports/docker.png)
 
-5. **Lanzar la API de Inferencia:** 
-* `python src/main.py`
-
-6. **Probar API: ingresando a la Interfaz de Prueba** 
+5. **Acceder a la API de Inferencia:** 
+Una vez que la terminal indique que el servidor Uvicorn está activo, abra su navegador e ingrese a:
 * `http://localhost:8000/docs`
-(Una vez que el servidor esté activo, acceda a la documentación interactiva para realizar predicciones en tiempo real enviando un JSON de prueba)
+(Documentación interactiva de FastAPI para realizar predicciones enviando un JSON de prueba).
