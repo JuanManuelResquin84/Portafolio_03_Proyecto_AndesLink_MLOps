@@ -1,0 +1,304 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"background: #1a1c24; padding: 15px; border-radius: 8px; border: 1px solid #333; text-align: center;\">\n  <h3 style=\"color: #62ecb5; margin-top: 0;\">Performance del Modelo Entrenado (GBC_V1)</h3>\n  <table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 1.1em;\">\n    <tr style=\"border-bottom: 1px solid #444;\">\n      <td style=\"padding: 8px; text-align: left; color: #aaa;\">Métrica</td>\n      <td style=\"padding: 8px; text-align: right; font-weight: bold; color: #fff;\">Valor Real</td>\n    </tr>\n    <tr style=\"border-bottom: 1px solid #222;\">\n      <td style=\"padding: 8px; text-align: left;\">Accuracy (Exactitud)</td>\n      <td style=\"padding: 8px; text-align: right; color: #56a3f9;\">0.8421</td>\n    </tr>\n    <tr style=\"border-bottom: 1px solid #222;\">\n      <td style=\"padding: 8px; text-align: left; font-weight: bold; color: #ffca28;\">Recall (Detección de Fugas)</td>\n      <td style=\"padding: 8px; text-align: right; font-weight: bold; color: #ffca28;\">0.8150</td>\n    </tr>\n    <tr style=\"border-bottom: 1px solid #222;\">\n      <td style=\"padding: 8px; text-align: left;\">F1-Score</td>\n      <td style=\"padding: 8px; text-align: right; color: #56a3f9;\">0.7843</td>\n    </tr>\n    <tr>\n      <td style=\"padding: 8px; text-align: left;\">Cohen's Kappa</td>\n      <td style=\"padding: 8px; text-align: right; color: #b972ff;\">0.6412</td>\n    </tr>\n  </table>\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.2.0",
+      "title": "Métricas de Validación (Train)",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "ml_last_churn_score",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Último Score de Fuga Calculado",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
+      },
+      "description": "Mide en tiempo real el tiempo promedio (en segundos) que tarda el endpoint /predict en procesar las solicitudes y devolver una respuesta.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
+          },
+          "editorMode": "code",
+          "expr": "ml_prediction_latency_seconds_sum / ml_prediction_latency_seconds_count",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Latencia Promedio del Servidor (FastAPI)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
+      },
+      "description": "Contador acumulativo que registra el número total de solicitudes que pasaron con éxito por el endpoint de predicción.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "ml_predictions_total",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Total de Predicciones Consultadas",
+      "type": "stat"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "AndesLink_Resquin_Juan_Manuel",
+  "uid": "db4aab9d-6bf0-4937-80c5-3110a4b45783",
+  "version": 4,
+  "weekStart": ""
+}
