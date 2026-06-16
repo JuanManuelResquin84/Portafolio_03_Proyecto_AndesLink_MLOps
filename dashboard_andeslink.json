@@ -48,10 +48,7 @@
       "type": "text"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -118,10 +115,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
-      },
+      "datasource": {},
       "description": "Mide en tiempo real el tiempo promedio (en segundos) que tarda el endpoint /predict en procesar las solicitudes y devolver una respuesta.",
       "fieldConfig": {
         "defaults": {
@@ -214,10 +208,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "ee5e3948-e4cc-4d87-bd7d-4a9bba12dbb9"
-      },
+      "datasource": {},
       "description": "Contador acumulativo que registra el número total de solicitudes que pasaron con éxito por el endpoint de predicción.",
       "fieldConfig": {
         "defaults": {
@@ -299,6 +290,6 @@
   "timezone": "",
   "title": "AndesLink_Resquin_Juan_Manuel",
   "uid": "db4aab9d-6bf0-4937-80c5-3110a4b45783",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }

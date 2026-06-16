@@ -1,21 +1,28 @@
-version: '3.8'
-
 services:
-  # API de Churn
   api:
     build: .
     container_name: andeslink_api_container
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000
     ports:
       - "8000:8000"
     volumes:
-      - ./data:/app/data
-      - ./models:/app/models
-    environment:
-      - ENV=production
+      - .:/app
     networks:
       - andeslink_network
 
-  # Recolector Prometheus
+  evidently:
+    image: nginx:alpine
+    container_name: andeslink_evidently_container
+    ports:
+      - "8001:80"
+    volumes:
+      - ./data:/usr/share/nginx/html
+    tty: true
+    networks:
+      - andeslink_network
+    depends_on:
+      - api
+
   prometheus:
     image: prom/prometheus:v2.45.0
     container_name: andeslink_prometheus_container
@@ -25,22 +32,19 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - andeslink_network
-    depends_on:
-      - api
 
-  # Grafana
   grafana:
     image: grafana/grafana:10.2.0
     container_name: andeslink_grafana_container
     ports:
-      - "3000:3000" # Puerto clave para entrar a diseñar los tableros
+      - "3000:3000"
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin # Contraseña simple para que entres directo
+      - GF_SECURITY_ADMIN_PASSWORD=admin
     networks:
       - andeslink_network
     depends_on:
       - prometheus
-      
+
 networks:
   andeslink_network:
     driver: bridge

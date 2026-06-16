@@ -1,6 +1,6 @@
 # Análisis y Modelado
 pandas==2.1.4
-numpy
+numpy==1.26.4
 scikit-learn==1.4.2
 imbalanced-learn==0.14.1
 xgboost==3.2.0
@@ -17,7 +17,15 @@ fastapi==0.136.1
 uvicorn==0.47.0
 python-dotenv==1.2.2
 
-# Cerebro
+# Cerebro y Monitoreo
 ipykernel==7.2.0
-
 prometheus_client==0.25.0
+uuid6==2025.0.1
+dynaconf==3.2.4
+litestar==2.19.0
+nltk==3.6.7
+ujson==5.4.0
+watchdog==3.0.0
+plotly==5.10.0
+evidently==0.7.21
+

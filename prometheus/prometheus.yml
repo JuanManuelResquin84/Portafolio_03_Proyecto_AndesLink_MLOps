@@ -1,9 +1,6 @@
-global:
-  scrape_interval: 5s # El robot va a buscar métricas a la API cada 5 segundos (ideal para pruebas locales)
-  evaluation_interval: 5s
-
 scrape_configs:
   - job_name: "andeslink-api-metrics"
     metrics_path: "/metrics" 
     static_configs:
-      - targets: ["api:8000"] # "api" es el nombre del servicio que definiremos en el docker-compose
+      # Cambia "api" por el nombre exacto que definiste en el container_name
+      - targets: ["andeslink_api_container:8000"]
