@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # API de Churn
   api:
     build: .
     container_name: andeslink_api_container
@@ -11,3 +12,35 @@ services:
       - ./models:/app/models
     environment:
       - ENV=production
+    networks:
+      - andeslink_network
+
+  # Recolector Prometheus
+  prometheus:
+    image: prom/prometheus:v2.45.0
+    container_name: andeslink_prometheus_container
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - andeslink_network
+    depends_on:
+      - api
+
+  # Grafana
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: andeslink_grafana_container
+    ports:
+      - "3000:3000" # Puerto clave para entrar a diseñar los tableros
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin # Contraseña simple para que entres directo
+    networks:
+      - andeslink_network
+    depends_on:
+      - prometheus
+      
+networks:
+  andeslink_network:
+    driver: bridge

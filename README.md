@@ -48,7 +48,6 @@ graph TD
     
     API --> RES{"Predicciones en localhost:8000/docs"}
 ```
-![imagen](reports/imagen.jpg)
 
 ### **Gobernanza y Tracking de Datos y Modelos:** Control de versiones de artefactos pesados y datasets mediante **DVC (Data Version Control)** con almacenamiento remoto.
 
@@ -273,3 +272,15 @@ Una vez que la terminal indique que el servidor Uvicorn está activo, abra su na
 ![3](reports/3.png)
 
 ![4](reports/4.png)
+
+![5](reports/5.png)
+
+![6](reports/6.png)
+
+![7](reports/7.png)
+
+![8](reports/8.png)
+
+![9](reports/9.png)
+
+![10](reports/10.png)
