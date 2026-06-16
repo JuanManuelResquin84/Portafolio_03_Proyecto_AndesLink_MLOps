@@ -264,7 +264,7 @@ Ejecute el siguiente comando para que Docker Compose construya la imagen e inici
 5. **Acceder a la API de Inferencia:** 
 Una vez que la terminal indique que el servidor Uvicorn está activo, abra su navegador e ingrese a:
 * `http://localhost:8000/docs`
-(Documentación interactiva de FastAPI para realizar predicciones enviando un JSON de prueba)..
+(Documentación interactiva de FastAPI para realizar predicciones enviando un JSON de prueba)...
 
 ![1](reports/1.png)
 
