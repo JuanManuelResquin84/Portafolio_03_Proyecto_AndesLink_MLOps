@@ -32,10 +32,12 @@ graph TD
     subgraph Local ["Almacenamiento Local (Volúmenes DVC)"]
         M1["modelo_churn_GBC_andeslink.pkl"]
         S1["scaler_andeslink.pkl"]
+        X1["X_columns.pkl"]
     end
     
     REG --> M1
     P_TRAIN --> S1
+    P_TRAIN --> X1
 
     subgraph Docker_Env ["Entorno de Producción (Docker Compose)"]
         subgraph Contenedor ["Contenedor: andeslink_api_container"]
@@ -45,6 +47,7 @@ graph TD
 
     M1 -.->|Compartido por Volumen| API
     S1 -.->|Compartido por Volumen| API
+    X1 -.->|Validación de Features| API
     
     API --> RES{"Predicciones en localhost:8000/docs"}
 ```
@@ -212,6 +215,8 @@ graph TD
 > * **`modelo_churn_GBC_andeslink.pkl`**: El motor de inferencia definitivo optimizado del *Gradient Boosting Classifier*, configurado con el umbral matemático de **0.45** para el resguardo presupuestario de la empresa.
 
 > * **`scaler_andeslink.pkl`**: El transformador de variables con los parámetros de distribución ajustados sobre el dataset de entrenamiento, vital para asegurar la fidelidad del dato ingresado a la API.
+
+> * **`X_columns.pkl`:** Estructura de columnas (features) preservada del entrenamiento. Es el contrato de datos necesario para asegurar que el pipeline de inferencia no sufra data drift o errores de orden en las variables al momento de realizar la predicción.
 
 # **FASE 4: Integración Continua (CI) con GitHub Actions**
 
