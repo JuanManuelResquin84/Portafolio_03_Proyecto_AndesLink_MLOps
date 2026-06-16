@@ -32,10 +32,12 @@ graph TD
     subgraph Local ["Almacenamiento Local (Volúmenes DVC)"]
         M1["modelo_churn_GBC_andeslink.pkl"]
         S1["scaler_andeslink.pkl"]
+        X1["X_columns.pkl"]
     end
     
     REG --> M1
     P_TRAIN --> S1
+    P_TRAIN --> X1
 
     subgraph Docker_Env ["Entorno de Producción (Docker Compose)"]
         subgraph Contenedor ["Contenedor: andeslink_api_container"]
@@ -45,6 +47,7 @@ graph TD
 
     M1 -.->|Compartido por Volumen| API
     S1 -.->|Compartido por Volumen| API
+    X1 -.->|Validación de Features| API
     
     API --> RES{"Predicciones en localhost:8000/docs"}
 ```
@@ -213,6 +216,8 @@ graph TD
 
 > * **`scaler_andeslink.pkl`**: El transformador de variables con los parámetros de distribución ajustados sobre el dataset de entrenamiento, vital para asegurar la fidelidad del dato ingresado a la API.
 
+> * **`X_columns.pkl`:** Estructura de columnas (features) preservada del entrenamiento. Es el contrato de datos necesario para asegurar que el pipeline de inferencia no sufra data drift o errores de orden en las variables al momento de realizar la predicción.
+
 # **FASE 4: Integración Continua (CI) con GitHub Actions**
 
 ### Para garantizar la estabilidad del sistema y asegurar que ninguna modificación rompa la API en producción, se implementó un flujo de **Integración Continua (CI)** mediante **GitHub Actions**. 
@@ -263,7 +268,7 @@ Ejecute el siguiente comando para que Docker Compose construya la imagen e inici
 5. **Acceder a la API de Inferencia:** 
 Una vez que la terminal indique que el servidor Uvicorn está activo, abra su navegador e ingrese a:
 * `http://localhost:8000/docs`
-(Documentación interactiva de FastAPI para realizar predicciones enviando un JSON de prueba)..
+(Documentación interactiva de FastAPI para realizar predicciones enviando un JSON de prueba)...
 
 ![1](reports/1.png)
 
@@ -273,14 +278,3 @@ Una vez que la terminal indique que el servidor Uvicorn está activo, abra su na
 
 ![4](reports/4.png)
 
-![5](reports/5.png)
-
-![6](reports/6.png)
-
-![7](reports/7.png)
-
-![8](reports/8.png)
-
-![9](reports/9.png)
-
-![10](reports/10.png)
