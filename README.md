@@ -277,4 +277,4 @@ Una vez que la terminal indique que el servidor Uvicorn está activo, abra su na
 ![3](reports/3.png)
 
 ![4](reports/4.png)
-
+....
