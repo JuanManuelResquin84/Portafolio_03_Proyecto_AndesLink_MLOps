@@ -56,7 +56,10 @@ def registrar_log(data: dict):
 @app.get("/")
 def read_root():
     """Endpoint para verificar el estado de la API"""
-    return {"status": "Online"}
+    return {
+        "status": "Online",
+        "proyecto": "AndesLink Churn Prediction"
+    }
 
 @app.post("/predict")
 def predecir(c: Cliente, bt: BackgroundTasks):
