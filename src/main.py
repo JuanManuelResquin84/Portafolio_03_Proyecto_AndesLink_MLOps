@@ -1,4 +1,10 @@
-import os, time, csv, logging, joblib, pandas as pd, json
+import os
+import time
+import csv
+import logging
+import joblib
+import pandas as pd
+import json
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from prometheus_client import Counter, Histogram, Gauge, generate_latest, CONTENT_TYPE_LATEST
 from starlette.responses import Response
@@ -13,6 +19,7 @@ LATENCIA = Histogram("ml_prediction_latency_seconds", "Latencia", buckets=(0.01,
 CONTEO = Counter("ml_predictions_total", "Total", ["resultado", "version"])
 ACCURACY = Gauge("ml_model_accuracy", "Accuracy")
 
+# Carga de modelos y datos
 BASE_DIR = os.path.dirname(__file__)
 model = joblib.load(os.path.join(BASE_DIR, '../models/modelo_churn_GBC_andeslink.pkl'))
 scaler = joblib.load(os.path.join(BASE_DIR, '../models/scaler_andeslink.pkl'))
@@ -20,11 +27,21 @@ cols = joblib.load(os.path.join(BASE_DIR, '../models/X_columns.pkl'))
 ACCURACY.set(0.8421)
 
 class Cliente(BaseModel):
-    tenure_months: int; monthly_charge: float; total_charges: float
-    support_tickets: int; late_payments: int; avg_monthly_usage_gb: float
-    contract_type: str; payment_method: str; internet_service: str
-    has_streaming: int; has_security_pack: int; num_products: int
-    region: str; customer_age: int; is_promo: int
+    tenure_months: int
+    monthly_charge: float
+    total_charges: float
+    support_tickets: int
+    late_payments: int
+    avg_monthly_usage_gb: float
+    contract_type: str
+    payment_method: str
+    internet_service: str
+    has_streaming: int
+    has_security_pack: int
+    num_products: int
+    region: str
+    customer_age: int
+    is_promo: int
 
 def registrar_log(data: dict):
     path = os.path.join(BASE_DIR, '../data/logs.csv')
@@ -33,6 +50,13 @@ def registrar_log(data: dict):
         writer = csv.DictWriter(f, fieldnames=data.keys())
         if not file_exists: writer.writeheader()
         writer.writerow(data)
+
+# --- RUTAS ---
+
+@app.get("/")
+def read_root():
+    """Endpoint para verificar el estado de la API"""
+    return {"status": "Online"}
 
 @app.post("/predict")
 def predecir(c: Cliente, bt: BackgroundTasks):
