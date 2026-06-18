@@ -11,15 +11,19 @@ services:
       - andeslink_network
 
   evidently:
-    image: nginx:alpine
+    image: python:3.11-slim
     container_name: andeslink_evidently_container
     ports:
-      - "8001:80"
+      - "8001:8000"
     volumes:
-      - ./data:/usr/share/nginx/html
-    tty: true
+      - .:/app
+    working_dir: /app
     networks:
       - andeslink_network
+    # Instalamos evidently e iniciamos la UI apuntando a la carpeta 'workspace'
+    command: >
+      sh -c "pip install evidently && 
+             evidently ui --host 0.0.0.0 --port 8000 --workspace /app/workspace"
     depends_on:
       - api
 
