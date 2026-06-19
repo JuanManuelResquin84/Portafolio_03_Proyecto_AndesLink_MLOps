@@ -322,12 +322,14 @@ jobs:
 | **Prometheus** | 9090 | Recolecta métricas de la API |
 | **Grafana** | 3000 | Visualiza dashboards |
 
-### **Métricas Exponadas por FastAPI**
-```mermaid
+### **Métricas Exportadas por FastAPI**
+
+```json
 - ml_prediction_latency_seconds: Histograma de latencia
 - ml_predictions_total: Contador de predicciones (por resultado)
 - ml_model_accuracy: Gauge de accuracy del modelo
 ```
+
 ### **Dashboard Grafana**
 
 > Acceso: http://localhost:3000 (admin/admin)
