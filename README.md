@@ -3,6 +3,7 @@
 ### Carrera: **Ciencia de Datos e IA - 2do Año**
 ### Alumno: **Juan Manuel Resquin**
 ### Materia: **Laboratorio de Minería de Datos**
+### Profesor: **Diego Mosquera**
 ---
 >* [Repositorio del Proyecto en DagsHub](https://dagshub.com/JuanManuelResquin84/Proyecto_AndesLink)
 
