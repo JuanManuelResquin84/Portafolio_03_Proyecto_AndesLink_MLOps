@@ -208,6 +208,67 @@ graph TD
   "is_promo": 1
 }
 ```
+
+```json
+{
+  "tenure_months": 34,
+  "monthly_charge": 89.99,
+  "total_charges": 3059.66,
+  "support_tickets": 0,
+  "late_payments": 0,
+  "avg_monthly_usage_gb": 450.25,
+  "contract_type": "anual",
+  "payment_method": "tarjeta",
+  "internet_service": "fibra",
+  "has_streaming": 1,
+  "has_security_pack": 1,
+  "num_products": 5,
+  "region": "sur",
+  "customer_age": 28,
+  "is_promo": 0
+}
+```
+
+```json
+{
+  "tenure_months": 14,
+  "monthly_charge": 45.50,
+  "total_charges": 410.50,
+  "support_tickets": 5,
+  "late_payments": 6,
+  "avg_monthly_usage_gb": 30.10,
+  "contract_type": "mensual",
+  "payment_method": "efectivo",
+  "internet_service": "cable",
+  "has_streaming": 0,
+  "has_security_pack": 0,
+  "num_products": 1,
+  "region": "norte",
+  "customer_age": 22,
+  "is_promo": 1
+}
+```
+
+```json
+{
+  "tenure_months": 60,
+  "monthly_charge": 285.00,
+  "total_charges": 17100.00,
+  "support_tickets": 2,
+  "late_payments": 0,
+  "avg_monthly_usage_gb": 3200.75,
+  "contract_type": "anual",
+  "payment_method": "transferencia",
+  "internet_service": "fibra",
+  "has_streaming": 0,
+  "has_security_pack": 1,
+  "num_products": 8,
+  "region": "centro",
+  "customer_age": 45,
+  "is_promo": 0
+}
+```
+
 ---
 ### **Arquitectura Docker**
 ### **servicios:**
