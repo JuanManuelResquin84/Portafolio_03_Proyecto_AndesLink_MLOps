@@ -1,5 +1,5 @@
 # Análisis y Modelado
-pandas==2.1.4
+pandas
 numpy==1.26.4
 scikit-learn==1.4.2
 imbalanced-learn==0.14.1
