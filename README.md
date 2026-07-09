@@ -221,7 +221,7 @@ graph TD
   "late_payments": 0,
   "avg_monthly_usage_gb": 450.25,
   "contract_type": "anual",
-  "payment_method": "tarjeta",
+  "payment_method": "credito",
   "internet_service": "fibra",
   "has_streaming": 1,
   "has_security_pack": 1,
