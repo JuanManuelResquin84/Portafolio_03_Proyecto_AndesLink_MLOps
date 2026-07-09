@@ -14,7 +14,7 @@ PAYMENT_METHODS = ["credito", "debito", "efectivo", "transferencia"]
 INTERNET_SERVICES = ["cable", "fibra", "movil", "ninguno"]
 REGIONS = ["centro", "norte", "oeste", "sur"]
 
-N_REQUESTS = 150
+N_REQUESTS = 1000
 
 
 def cliente_aleatorio():
