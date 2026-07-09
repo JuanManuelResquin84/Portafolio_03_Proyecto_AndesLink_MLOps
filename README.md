@@ -8,6 +8,8 @@
 >* [Repositorio del Proyecto en DagsHub](https://dagshub.com/JuanManuelResquin84/Proyecto_AndesLink)
 
 >* [Registro de Experimentos (MLflow)](https://dagshub.com/JuanManuelResquin84/Proyecto_AndesLink.mlflow)
+
+>* [Video de Proceso en YouTube](https://www.youtube.com/watch?v=RHD0Lsiz6mY&t=67s)
 ---
 ## **📋 TABLA DE CONTENIDOS**
 1. [Objetivo](#objetivo)
