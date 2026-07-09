@@ -417,7 +417,7 @@ jobs:
     - Sube snapshot a Evidently UI                  
     - Reintenta automáticamente si falla        
     ↓                                                                       
- 5. Evidently UI (localhost:8001)        
+ 4. Evidently UI (localhost:8001)        
     - Visualiza drift en tiempo real                   
     - Dashboard con métricas clave 
 ```
