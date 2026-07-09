@@ -11,7 +11,9 @@ services:
       - andeslink_network
 
   evidently:
-    image: python:3.11-slim
+    build:
+      context: .
+      dockerfile: Dockerfile.evidently
     container_name: andeslink_evidently_container
     ports:
       - "8001:8000"
@@ -20,12 +22,15 @@ services:
     working_dir: /app
     networks:
       - andeslink_network
-    # Instalamos evidently e iniciamos la UI apuntando a la carpeta 'workspace'
-    command: >
-      sh -c "pip install evidently && 
-             evidently ui --host 0.0.0.0 --port 8000 --workspace /app/workspace"
+    command: evidently ui --host 0.0.0.0 --port 8000 --workspace /app/workspace
     depends_on:
       - api
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   prometheus:
     image: prom/prometheus:v2.45.0
@@ -48,6 +53,21 @@ services:
       - andeslink_network
     depends_on:
       - prometheus
+
+  monitor:
+    build: .
+    container_name: andeslink_monitor_container
+    command: python script/push_to_ui.py
+    volumes:
+      - .:/app
+    networks:
+      - andeslink_network
+    depends_on:
+      api:
+        condition: service_started
+      evidently:
+        condition: service_healthy
+    restart: unless-stopped
 
 networks:
   andeslink_network:
