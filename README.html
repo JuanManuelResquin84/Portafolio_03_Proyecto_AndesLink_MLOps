@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="proyecto-de-predicción-de-churn---andeslink"><strong>PROYECTO DE PREDICCIÓN DE CHURN - AndesLink</strong></h1>
+<h3 id="carrera-ciencia-de-datos-e-ia---2do-año">Carrera: <strong>Ciencia de Datos e IA - 2do Año</strong></h3>
+<h3 id="alumno-juan-manuel-resquin">Alumno: <strong>Juan Manuel Resquin</strong></h3>
+<h3 id="materia-laboratorio-de-minería-de-datos">Materia: <strong>Laboratorio de Minería de Datos</strong></h3>
+<h3 id="profesor-diego-mosquera">Profesor: <strong>Diego Mosquera</strong></h3>
+<hr>
+<blockquote>
+<ul>
+<li><a href="https://dagshub.com/JuanManuelResquin84/Proyecto_AndesLink">Repositorio del Proyecto en DagsHub</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><a href="https://dagshub.com/JuanManuelResquin84/Proyecto_AndesLink.mlflow">Registro de Experimentos (MLflow)</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=gVfuMAUJUYU&amp;t=1s">Video de Proceso en YouTube</a></li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="-tabla-de-contenidos"><strong>📋 TABLA DE CONTENIDOS</strong></h2>
+<ol>
+<li><a href="#objetivo">Objetivo</a></li>
+<li><a href="#arquitectura-de-soluci%C3%B3n">Arquitectura de Solución</a></li>
+<li><a href="#decisiones-de-arquitectura">Decisiones de Arquitectura</a></li>
+<li><a href="#tecnolog%C3%ADas">Tecnologías</a></li>
+<li><a href="#fase-1-an%C3%A1lisis-exploratorio-eda">Fase 1: EDA</a></li>
+<li><a href="#fase-2-modelado-cient%C3%ADfico">Fase 2: Modelado</a></li>
+<li><a href="#fase-3-api--dockerizaci%C3%B3n">Fase 3: API &amp; Docker</a></li>
+<li><a href="#fase-4-cicd-con-github-actions">Fase 4: CI/CD</a></li>
+<li><a href="#fase-5-monitoreo-con-evidently-ai">Fase 5: Monitoreo (Evidently)</a></li>
+<li><a href="#fase-6-observabilidad-t%C3%A9cnica">Fase 6: Observabilidad (Prometheus+Grafana)</a></li>
+<li><a href="#anexo-c%C3%B3mo-reproducir-el-proyecto">Reproducción del Proyecto</a></li>
+</ol>
+<hr>
+<h2 id="objetivo"><strong>OBJETIVO</strong></h2>
+<h3 id="implementar-un-sistema-mlops-end-to-end-para-predecir-churn-en-andeslink-integrando">Implementar un sistema <strong>MLOps End-to-End</strong> para predecir churn en AndesLink, integrando:</h3>
+<blockquote>
+<p>Control de versiones (Git + DVC)</p>
+</blockquote>
+<blockquote>
+<p>Tracking de experimentos (MLflow + DagsHub)</p>
+</blockquote>
+<blockquote>
+<p>API de inferencia robusta (FastAPI + Docker) con validaciones estrictas</p>
+</blockquote>
+<blockquote>
+<p>CI/CD (GitHub Actions + pytest)</p>
+</blockquote>
+<blockquote>
+<p>Monitoreo de datos (Evidently AI)</p>
+</blockquote>
+<blockquote>
+<p>Observabilidad técnica (Prometheus + Grafana)</p>
+</blockquote>
+<hr>
+<h2 id="arquitectura-de-solución"><strong>ARQUITECTURA DE SOLUCIÓN</strong></h2>
+<pre><code class="language-mermaid"><div class="mermaid">graph TD
+    DATA_RAW[(churn_sintetico.csv)] --> P_PREP["src/prepare.py"]
+    P_PREP --> DATA_PROC[(churn_procesado.csv)]
+    
+    DATA_PROC --> P_TRAIN["src/train.py"]
+    P_TRAIN --> METRICS["models/metrics.json"]
+    
+    subgraph MLOps_Stack ["DagsHub"]
+        TRACK["MLflow Tracking"]
+        REG["MLflow Registry V1"]
+    end
+    
+    P_TRAIN --> TRACK
+    TRACK --> REG
+    
+    subgraph Local ["Artefactos Locales (DVC)"]
+        M1["modelo_churn_GBC.pkl"]
+        S1["scaler.pkl"]
+        X1["X_columns.pkl"]
+    end
+    
+    REG --> M1
+    P_TRAIN --> S1
+    P_TRAIN --> X1
+
+    subgraph Producción ["Docker Compose"]
+        API["FastAPI :8000<br/>(Validación Estricta)"]
+        MONITOR["Monitor<br/>(Loop Continuo)"]
+        EVI["Evidently UI :8001"]
+        PROM["Prometheus :9090"]
+        GRAF["Grafana :3000"]
+    end
+
+    M1 -.->|Volumen| API
+    S1 -.->|Volumen| API
+    X1 -.->|Validación| API
+    METRICS -.->|Accuracy Real| API
+    
+    API --> LOGS["logs.csv"]
+    LOGS --> MONITOR
+    MONITOR --> EVI
+    API --> PROM
+    PROM --> GRAF
+</div></code></pre>
+<hr>
+<h2 id="decisiones-de-arquitectura"><strong>DECISIONES DE ARQUITECTURA</strong></h2>
+<h3 id="por-qué-un-contenedor-separado-para-evidently"><strong>¿Por qué un contenedor separado para Evidently?</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Servicio</th>
+<th style="text-align:left">Puerto</th>
+<th style="text-align:left">Propósito</th>
+<th style="text-align:left">Características</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">FastAPI</td>
+<td style="text-align:left">8000</td>
+<td style="text-align:left">Inferencia en tiempo real</td>
+<td style="text-align:left">Alta demanda, &lt;100ms latencia</td>
+</tr>
+<tr>
+<td style="text-align:left">Evidently UI</td>
+<td style="text-align:left">8001</td>
+<td style="text-align:left">Dashboards de monitoreo</td>
+<td style="text-align:left">Baja demanda, visualización</td>
+</tr>
+<tr>
+<td style="text-align:left">Monitor</td>
+<td style="text-align:left">----</td>
+<td style="text-align:left">Generación automática de reportes</td>
+<td style="text-align:left">reportes Loop continuo, reinicio automático</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ventajas"><strong>Ventajas</strong></h3>
+<blockquote>
+<p>Aislamiento: Si Evidently falla, la API sigue operando</p>
+</blockquote>
+<blockquote>
+<p>Recursos: Evidently consume RAM/CPU solo cuando se visualiza</p>
+</blockquote>
+<blockquote>
+<p>Independencia: Actualizas Evidently sin tocar la API</p>
+</blockquote>
+<hr>
+<h3 id="por-qué-python-311-slim-para-evidently"><strong>¿Por qué Python 3.11-slim para Evidently?</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Imagen</th>
+<th style="text-align:center">Tamaño</th>
+<th style="text-align:center">Python</th>
+<th style="text-align:left">Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>python:3.10-slim</code></td>
+<td style="text-align:center">~150MB</td>
+<td style="text-align:center">3.10</td>
+<td style="text-align:left">API (compatibilidad con modelo)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>python:3.11-slim</code></td>
+<td style="text-align:center">~150MB</td>
+<td style="text-align:center">3.11</td>
+<td style="text-align:left">Evidently (última versión estable)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ventajas-1"><strong>Ventajas</strong></h3>
+<blockquote>
+<p><strong>Compatibilidad:</strong> Evidently requiere Python 3.8+, 3.11 es la más reciente estable</p>
+</blockquote>
+<blockquote>
+<p><strong>Seguridad:</strong> Imagen &quot;slim&quot; = menos vulnerabilidades</p>
+</blockquote>
+<blockquote>
+<p><strong>Flexibilidad:</strong> Cada servicio usa la versión óptima para su propósito</p>
+</blockquote>
+<hr>
+<h2 id="tecnologías"><strong>TECNOLOGÍAS</strong></h2>
+<h3 id="data-science--ml"><strong>Data Science &amp; ML</strong></h3>
+<blockquote>
+<p><strong>Scikit-Learn:</strong> Gradient Boosting, CatBoost, AdaBoost</p>
+</blockquote>
+<blockquote>
+<p><strong>MLflow:</strong> Tracking + Model Registry</p>
+</blockquote>
+<blockquote>
+<p><strong>DVC:</strong> Versionado de datos y modelos</p>
+</blockquote>
+<hr>
+<h3 id="infraestructura"><strong>Infraestructura</strong></h3>
+<blockquote>
+<p><strong>FastAPI + Uvicorn:</strong> API REST  asíncrona con validaciones estrictas (Pydantic Literal + Field)</p>
+</blockquote>
+<blockquote>
+<p><strong>Docker + Docker Compose:</strong> Contenedorización con 5 servicios</p>
+</blockquote>
+<blockquote>
+<p><strong>GitHub Actions:</strong> CI/CD con pytest</p>
+</blockquote>
+<hr>
+<h3 id="monitoreo"><strong>Monitoreo</strong></h3>
+<blockquote>
+<p><strong>Evidently AI:</strong> Data drift detection</p>
+</blockquote>
+<blockquote>
+<p><strong>Prometheus:</strong> Métricas de infraestructura</p>
+</blockquote>
+<blockquote>
+<p><strong>Grafana:</strong> Dashboards técnicos</p>
+</blockquote>
+<hr>
+<h2 id="fase-1-análisis-exploratorio-eda"><strong>FASE 1:</strong> ANÁLISIS EXPLORATORIO (EDA)</h2>
+<h3 id="distribución-de-clientes"><strong>Distribución de Clientes</strong></h3>
+<blockquote>
+<p><strong>Churn Rate:</strong> ~30-35% (dataset desbalanceado)</p>
+</blockquote>
+<blockquote>
+<p><strong>Implicación:</strong> Requiere métricas como Precision/Recall, no solo Accuracy</p>
+</blockquote>
+<p><img src="reports/distribucion_clientes.png" alt="distribucion_clientes"></p>
+<hr>
+<h3 id="tickets-de-soporte-vs-churn"><strong>Tickets de Soporte vs Churn</strong></h3>
+<blockquote>
+<p><strong>Hallazgo:</strong> Clientes que se van generan 1.9 tickets vs 1.6 los que se quedan</p>
+</blockquote>
+<blockquote>
+<p><strong>Acción:</strong> Mejorar calidad del soporte técnico</p>
+</blockquote>
+<p><img src="reports/tickets_soporte_vs_churn.png" alt="tickets_soporte_vs_churn"></p>
+<hr>
+<h3 id="antigüedad-vs-churn"><strong>Antigüedad vs Churn</strong></h3>
+<blockquote>
+<p><strong>Hallazgo:</strong> Mediana de 40 meses (se quedan) vs 30 meses (se van)</p>
+</blockquote>
+<blockquote>
+<p><strong>Acción:</strong> Programas de fidelización para clientes &lt; 2.5 años</p>
+</blockquote>
+<h2 id="boxplot_antiguedad_churn"><img src="reports/boxplot_antiguedad_churn.png" alt="boxplot_antiguedad_churn"></h2>
+<h2 id="fase-2-modelado-científico"><strong>FASE 2:</strong> MODELADO CIENTÍFICO</h2>
+<ul>
+<li><strong>Modelo Seleccionado:</strong> Gradient Boosting Classifier V1</li>
+<li><strong>Configuración Óptima:</strong></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;n_estimators&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">100</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;learning_rate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0.1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;max_depth&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;umbral_personalizado&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0.45</span>  # Ajuste de negocio
+<span class="hljs-punctuation">}</span>
+</div></code></pre>
+<hr>
+<h3 id="métricas-finales"><strong>Métricas Finales</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Métrica</th>
+<th style="text-align:center">Valor</th>
+<th style="text-align:left">Interpretación de Negocio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Precision</strong></td>
+<td style="text-align:center">0.5714</td>
+<td style="text-align:left">De 100 alertas, 57 son reales → Evita desperdicio de presupuesto</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Recall</strong></td>
+<td style="text-align:center">0.5529</td>
+<td style="text-align:left">Detectamos 55% de los que se van → Cobertura balanceada</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Kappa</strong></td>
+<td style="text-align:center">0.3419</td>
+<td style="text-align:left">Acuerdo estadístico sólido → No es azar</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Accuracy</strong></td>
+<td style="text-align:center">0.7070</td>
+<td style="text-align:left">7/10 predicciones correctas → Consistencia global</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="justificación-estratégica"><strong>Justificación Estratégica</strong></h3>
+<blockquote>
+<p><strong>Problema de Negocio:</strong> AndesLink tiene presupuesto limitado para campañas de retención.</p>
+</blockquote>
+<hr>
+<h3 id="solución"><strong>Solución</strong></h3>
+<blockquote>
+<p><strong>Alta Precision (57%):</strong> No regalamos descuentos a clientes fieles (minimizamos Falsos Positivos)</p>
+</blockquote>
+<blockquote>
+<p><strong>Recall Moderado (55%):</strong> No saturamos al equipo de atención al cliente</p>
+</blockquote>
+<blockquote>
+<p><strong>ROI Optimizado:</strong> El dinero ahorrado en falsas alarmas financia promociones de mayor valor</p>
+</blockquote>
+<hr>
+<p><img src="reports/tabla_comparativa_modelos_final2.png" alt="tabla_comparativa_modelos"></p>
+<hr>
+<h2 id="fase-3-api--dockerización"><strong>FASE 3:</strong> API &amp; DOCKERIZACIÓN</h2>
+<h3 id="endpoints-principales"><strong>Endpoints Principales</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Endpoint</th>
+<th style="text-align:center">Método</th>
+<th style="text-align:left">Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>/</code></td>
+<td style="text-align:center"><strong>GET</strong></td>
+<td style="text-align:left">Health check</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/predict</code></td>
+<td style="text-align:center"><strong>POST</strong></td>
+<td style="text-align:left">Predicción de churn (con validación estricta)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/metrics</code></td>
+<td style="text-align:center"><strong>GET</strong></td>
+<td style="text-align:left">Métricas Prometheus</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/docs</code></td>
+<td style="text-align:center"><strong>GET</strong></td>
+<td style="text-align:left">Swagger UI interactivo</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="fvalidaciones-estrictas-de-la-api"><strong>FValidaciones Estrictas de la API</strong></h3>
+<h3 id="la-api-implementa-validaciones-robustas-para-prevenir-datos-corruptos">La API implementa validaciones robustas para prevenir datos corruptos:</h3>
+<h3 id="validación-de-rangos-numéricos-pydantic-field"><strong>Validación de rangos numéricos (Pydantic Field)</strong></h3>
+<pre class="hljs"><code><div>customer_age<span class="hljs-punctuation">:</span> int = Field(ge=<span class="hljs-number">18</span><span class="hljs-punctuation">,</span> le=<span class="hljs-number">100</span><span class="hljs-punctuation">,</span> description=<span class="hljs-string">&quot;Edad del cliente&quot;</span>)
+tenure_months<span class="hljs-punctuation">:</span> int = Field(ge=<span class="hljs-number">1</span><span class="hljs-punctuation">,</span> le=<span class="hljs-number">120</span><span class="hljs-punctuation">,</span> description=<span class="hljs-string">&quot;Meses de antigüedad&quot;</span>)
+monthly_charge<span class="hljs-punctuation">:</span> float = Field(ge=<span class="hljs-number">10.0</span><span class="hljs-punctuation">,</span> le=<span class="hljs-number">500.0</span><span class="hljs-punctuation">,</span> description=<span class="hljs-string">&quot;Cargo mensual&quot;</span>)
+avg_monthly_usage_gb<span class="hljs-punctuation">:</span> float = Field(ge=<span class="hljs-number">0.0</span><span class="hljs-punctuation">,</span> le=<span class="hljs-number">350.0</span><span class="hljs-punctuation">,</span> description=<span class="hljs-string">&quot;Uso mensual en GB&quot;</span>)
+</div></code></pre>
+<hr>
+<h3 id="validación-de-categorías-pydantic-literal"><strong>Validación de categorías (Pydantic Literal)</strong></h3>
+<pre class="hljs"><code><div>contract_type<span class="hljs-punctuation">:</span> Literal<span class="hljs-punctuation">[</span><span class="hljs-string">&quot;mensual&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;anual&quot;</span><span class="hljs-punctuation">]</span>
+payment_method<span class="hljs-punctuation">:</span> Literal<span class="hljs-punctuation">[</span><span class="hljs-string">&quot;credito&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;debito&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;efectivo&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;transferencia&quot;</span><span class="hljs-punctuation">]</span>
+internet_service<span class="hljs-punctuation">:</span> Literal<span class="hljs-punctuation">[</span><span class="hljs-string">&quot;fibra&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;cable&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;dsl&quot;</span><span class="hljs-punctuation">]</span>
+region<span class="hljs-punctuation">:</span> Literal<span class="hljs-punctuation">[</span><span class="hljs-string">&quot;norte&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;sur&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;centro&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;este&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;oeste&quot;</span><span class="hljs-punctuation">]</span>
+</div></code></pre>
+<h3 id="resultado-la-api-rechaza-automáticamente-http-422-cualquier-categoría-o-valor-fuera-de-rango-previniendo-predicciones-corruptas"><strong>Resultado:</strong> La API rechaza automáticamente (HTTP 422) cualquier categoría o valor fuera de rango, previniendo predicciones corruptas.</h3>
+<hr>
+<h3 id="ejemplos-de-request-válidos"><strong>Ejemplos de Request Válidos</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;tenure_months&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">7</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;monthly_charge&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">58.23</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;total_charges&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">326.50</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;support_tickets&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;late_payments&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;avg_monthly_usage_gb&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">81.83</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;contract_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;mensual&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;payment_method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;transferencia&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;internet_service&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cable&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;has_streaming&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;has_security_pack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;num_products&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;region&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;centro&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;customer_age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">53</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;is_promo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
+<span class="hljs-punctuation">}</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;tenure_months&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">34</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;monthly_charge&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">89.99</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;total_charges&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3059.66</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;support_tickets&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;late_payments&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;avg_monthly_usage_gb&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">450.25</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;contract_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;anual&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;payment_method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;credito&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;internet_service&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;fibra&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;has_streaming&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;has_security_pack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;num_products&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;region&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;sur&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;customer_age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">28</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;is_promo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span>
+<span class="hljs-punctuation">}</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;tenure_months&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">14</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;monthly_charge&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">45.50</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;total_charges&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">410.50</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;support_tickets&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;late_payments&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;avg_monthly_usage_gb&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">30.10</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;contract_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;mensual&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;payment_method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;efectivo&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;internet_service&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cable&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;has_streaming&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;has_security_pack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;num_products&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;region&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;norte&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;customer_age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">22</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;is_promo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
+<span class="hljs-punctuation">}</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;tenure_months&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">60</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;monthly_charge&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">285.00</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;total_charges&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">17100.00</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;support_tickets&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;late_payments&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;avg_monthly_usage_gb&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3200.75</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;contract_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;anual&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;payment_method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;transferencia&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;internet_service&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;fibra&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;has_streaming&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;has_security_pack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;num_products&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">8</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;region&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;centro&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;customer_age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">45</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;is_promo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span>
+<span class="hljs-punctuation">}</span>
+</div></code></pre>
+<hr>
+<h3 id="arquitectura-docker"><strong>Arquitectura Docker</strong></h3>
+<h3 id="servicios"><strong>servicios</strong></h3>
+<blockquote>
+<p>api:          → FastAPI (puerto 8000)</p>
+</blockquote>
+<blockquote>
+<p>evidently:    →  Evidently UI (puerto 8001) - Instalación en build time</p>
+</blockquote>
+<blockquote>
+<p>monitor:    →  Servicio de monitoreo automatizado (loop continuo)</p>
+</blockquote>
+<blockquote>
+<p>prometheus:   → Métricas (puerto 9090)</p>
+</blockquote>
+<blockquote>
+<p>grafana:      → Dashboards (puerto 3000)</p>
+</blockquote>
+<hr>
+<h3 id="métricas-de-prometheus"><strong>Métricas de Prometheus</strong></h3>
+<blockquote>
+<p>ml_prediction_latency_seconds:    →  Histograma de latencia</p>
+</blockquote>
+<blockquote>
+<p>ml_predictions_total:    →  Contador de predicciones (por resultado)</p>
+</blockquote>
+<blockquote>
+<p>ml_model_accuracy:    →  Gauge con accuracy real del modelo (leído desde metrics.json)</p>
+</blockquote>
+<blockquote>
+<p>ml_last_prediction_score:    →  Gauge con el score de la última predicción</p>
+</blockquote>
+<hr>
+<h3 id="volúmenes-compartidos"><strong>Volúmenes Compartidos</strong></h3>
+<blockquote>
+<p>./models → Modelo, scaler, columnas</p>
+</blockquote>
+<blockquote>
+<p>./data → Dataset procesado + logs</p>
+</blockquote>
+<blockquote>
+<p>./workspace → Snapshots de Evidently</p>
+</blockquote>
+<hr>
+<h1 id="fase-4-cicd-con-github-actions"><strong>FASE 4:</strong> CI/CD CON GITHUB ACTIONS</h1>
+<h3 id="pipeline-automatizado"><strong>Pipeline Automatizado</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-attr">on:</span> [<span class="hljs-string">push</span>, <span class="hljs-string">pull_request</span>]
+
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">test:</span>
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+    <span class="hljs-attr">steps:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">checkout</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">setup</span> <span class="hljs-string">Python</span> <span class="hljs-number">3.10</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">install</span> <span class="hljs-string">dependencies</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">download</span> <span class="hljs-string">artifacts</span> <span class="hljs-string">(DVC)</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">run</span> <span class="hljs-string">pytest</span> 
+</div></code></pre>
+<h3 id="beneficios"><strong>Beneficios</strong></h3>
+<blockquote>
+<p>Calidad: Bloquea merges si los tests fallan</p>
+</blockquote>
+<blockquote>
+<p>Seguridad: Credenciales en GitHub Secrets</p>
+</blockquote>
+<blockquote>
+<p>Automatización: Sin intervención manual</p>
+</blockquote>
+<hr>
+<h2 id="fase-5-monitoreo-con-evidently-ai"><strong>FASE 5:</strong> MONITOREO CON EVIDENTLY AI</h2>
+<h3 id="arquitectura-de-monitoreo"><strong>Arquitectura de Monitoreo</strong></h3>
+<pre class="hljs"><code><div> <span class="hljs-number">1.</span> API recibe predicciones (con validación estricta)             
+    ↓                                    
+ <span class="hljs-number">2.</span> Logs se guardan en logs.csv          
+    ↓                                    
+ <span class="hljs-number">3.</span> Servicio MONITOR (loop continuo)                 
+    - Lee logs.csv y churn_procesado.csv            
+    - Aplica get_dummies + reindex (mismo que API)  
+    - Genera reporte de drift                        
+    - Sube snapshot a Evidently UI                  
+    - Reintenta automáticamente si falla        
+    ↓                                                                       
+ <span class="hljs-number">4.</span> Evidently UI (localhost<span class="hljs-punctuation">:</span><span class="hljs-number">8001</span>)        
+    - Visualiza drift en tiempo real                   
+    - Dashboard con métricas clave 
+</div></code></pre>
+<h3 id="servicio-monitor-automatizado"><strong>Servicio Monitor Automatizado</strong></h3>
+<h3 id="el-monitoreo-ya-no-es-manual-se-implementó-un-servicio-docker-dedicado-que">El monitoreo ya NO es manual. Se implementó un servicio Docker dedicado que:</h3>
+<blockquote>
+<p>Corre en loop continuo con intervalo configurable (MONITOR_INTERVAL_SECONDS)</p>
+</blockquote>
+<blockquote>
+<p>Se reinicia automáticamente ante fallos (restart: unless-stopped)</p>
+</blockquote>
+<blockquote>
+<p>Espera a que Evidently esté listo antes de arrancar (condition: service_healthy)</p>
+</blockquote>
+<blockquote>
+<p>Valida que haya suficientes logs antes de generar reporte (MIN_LOGS = 30)</p>
+</blockquote>
+<h3 id="script-principal-push_to_uipy"><strong>Script Principal:</strong> push_to_ui.py</h3>
+<h3 id="el-pipeline-de-monitoreo-se-consolidó-en-un-único-script-que">El pipeline de monitoreo se consolidó en un único script que:</h3>
+<blockquote>
+<p>Carga churn_procesado.csv (referencia, ya codificado)</p>
+</blockquote>
+<blockquote>
+<p>Carga logs.csv (producción)</p>
+</blockquote>
+<blockquote>
+<p>Aplica pd.get_dummies + reindex contra X_columns.pkl (misma lógica que la API)</p>
+</blockquote>
+<blockquote>
+<p>Genera reporte con DataDriftPreset + DataSummaryPreset</p>
+</blockquote>
+<blockquote>
+<p>Sube el snapshot a Evidently UI</p>
+</blockquote>
+<blockquote>
+<p>Generación de Tráfico de Prueba</p>
+</blockquote>
+<h3 id="se-creó-generar_trafico_pruebapy-para-simular-tráfico-realista">Se creó generar_trafico_prueba.py para simular tráfico realista:</h3>
+<blockquote>
+<p>Cubre todas las categorías reales del dataset</p>
+</blockquote>
+<blockquote>
+<p>Usa distribución normal calibrada con media y desvío reales</p>
+</blockquote>
+<blockquote>
+<p>Recorta valores a rangos observados en entrenamiento</p>
+</blockquote>
+<blockquote>
+<p>Reduce drift artificial, dejando solo drift genuino</p>
+</blockquote>
+<h3 id="dashboard-evidently"><strong>Dashboard Evidently</strong></h3>
+<blockquote>
+<p>Acceso: http://localhost:8001</p>
+</blockquote>
+<h3 id="métricas-monitoreadas"><strong>Métricas Monitoreadas</strong></h3>
+<blockquote>
+<p><strong>Data Drift:</strong> Cambios en distribución de variables</p>
+</blockquote>
+<blockquote>
+<p><strong>Data Summary:</strong> Estadísticas descriptivas</p>
+</blockquote>
+<blockquote>
+<p><strong>Alertas:</strong> Variables con drift significativo</p>
+</blockquote>
+<hr>
+<h1 id="fase-6-observabilidad-técnica"><strong>FASE 6:</strong> OBSERVABILIDAD TÉCNICA</h1>
+<h3 id="stack-prometheus--grafana"><strong>Stack Prometheus + Grafana</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Componente</th>
+<th style="text-align:center">Puerto</th>
+<th style="text-align:left">Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Prometheus</strong></td>
+<td style="text-align:center">9090</td>
+<td style="text-align:left">Recolecta métricas de la API</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Grafana</strong></td>
+<td style="text-align:center">3000</td>
+<td style="text-align:left">Visualiza dashboards</td>
+</tr>
+</tbody>
+</table>
+<h3 id="métricas-exportadas-por-fastapi"><strong>Métricas Exportadas por FastAPI</strong></h3>
+<blockquote>
+<p>ml_prediction_latency_seconds: Histograma de latencia</p>
+</blockquote>
+<blockquote>
+<p>ml_predictions_total: Contador de predicciones (por resultado)</p>
+</blockquote>
+<blockquote>
+<p>ml_model_accuracy: Gauge con accuracy real (leído desde metrics.json)</p>
+</blockquote>
+<blockquote>
+<p>ml_last_prediction_score: Gauge con score de última predicción</p>
+</blockquote>
+<h3 id="dashboard-grafana"><strong>Dashboard Grafana</strong></h3>
+<blockquote>
+<p>Acceso: http://localhost:3000 (admin/admin)</p>
+</blockquote>
+<h3 id="paneles"><strong>Paneles:</strong></h3>
+<blockquote>
+<p>Requests por minuto</p>
+</blockquote>
+<blockquote>
+<p>Latencia p95, p99</p>
+</blockquote>
+<blockquote>
+<p>Tasa de errores HTTP</p>
+</blockquote>
+<blockquote>
+<p>Distribución de predicciones (Fuga vs Se queda)</p>
+</blockquote>
+<blockquote>
+<p>Último score de predicción</p>
+</blockquote>
+<h1 id="anexo-cómo-reproducir-el-proyecto"><strong>ANEXO:</strong> CÓMO REPRODUCIR EL PROYECTO</h1>
+<h3 id="1-clonar-repositorio"><strong>1. Clonar Repositorio</strong></h3>
+<pre class="hljs"><code><div>git clone https<span class="hljs-punctuation">:</span><span class="hljs-comment">//github.com/JuanManuelResquin84/Portafolio_03_Proyecto_AndesLink_MLOps.git</span>
+cd Portafolio_03_Proyecto_AndesLink_MLOps
+</div></code></pre>
+<h3 id="2-configurar-entorno"><strong>2. Configurar Entorno</strong></h3>
+<pre class="hljs"><code><div>conda create -n churn_env2 python=<span class="hljs-number">3.10</span> -y
+</div></code></pre>
+<pre class="hljs"><code><div>conda activate churn_env2
+</div></code></pre>
+<pre class="hljs"><code><div>pip install -r requirements_churn_env2.txt
+</div></code></pre>
+<h3 id="3-descargar-datos-y-modelos-dagshub"><strong>3. Descargar Datos y Modelos (DagsHub)</strong></h3>
+<pre class="hljs"><code><div>dagshub download JuanManuelResquin84/Proyecto_AndesLink . .
+</div></code></pre>
+<h3 id="4-levantar-infraestructura-docker"><strong>4. Levantar Infraestructura Docker</strong></h3>
+<pre class="hljs"><code><div>docker compose up --build
+</div></code></pre>
+<p><strong>Servicios disponibles</strong></p>
+<blockquote>
+<p><strong>API:</strong> http://localhost:8000/docs</p>
+</blockquote>
+<blockquote>
+<p><strong>Evidently UI:</strong> http://localhost:8001</p>
+</blockquote>
+<blockquote>
+<p><strong>Monitor:</strong> Servicio automático (sin puerto expuesto)</p>
+</blockquote>
+<blockquote>
+<p><strong>Prometheus:</strong> http://localhost:9090</p>
+</blockquote>
+<blockquote>
+<p><strong>Grafana:</strong> http://localhost:3000</p>
+</blockquote>
+<h3 id="5-generar-tráfico-de-prueba-opcional"><strong>5. Generar Tráfico de Prueba (Opcional)</strong></h3>
+<pre class="hljs"><code><div>python script/generar_trafico_prueba.py
+</div></code></pre>
+<blockquote>
+<p>Esto genera predicciones realistas contra la API para poblar logs.csv.</p>
+</blockquote>
+<h3 id="6-probar-api"><strong>6. Probar API</strong></h3>
+<h3 id="vía-swagger-ui"><strong>Vía Swagger UI</strong></h3>
+<pre class="hljs"><code><div>Ir a http<span class="hljs-punctuation">:</span><span class="hljs-comment">//localhost:8000/docs</span>
+Endpoint /predict → Try it out
+Enviar JSON de prueba  (usar ejemplos válidos de la Fase <span class="hljs-number">3</span>)
+</div></code></pre>
+<h3 id="vía-curl"><strong>Vía curl</strong></h3>
+<pre class="hljs"><code><div>curl -X POST <span class="hljs-string">&quot;http://localhost:8000/predict&quot;</span> \
+  -H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> \
+  -d &#x27;<span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;tenure_months&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">24</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;monthly_charge&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">75.5</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;total_charges&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1800.0</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;support_tickets&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;late_payments&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;avg_monthly_usage_gb&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">15.5</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;contract_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;mensual&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;payment_method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;credito&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;internet_service&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;fibra&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;has_streaming&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;has_security_pack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;num_products&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;region&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;norte&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;customer_age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">28</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;is_promo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
+  <span class="hljs-punctuation">}</span>&#x27;
+</div></code></pre>
+<h3 id="7-verificar-monitoreo-automático"><strong>7. Verificar Monitoreo Automático</strong></h3>
+<h3 id="el-servicio-monitor-genera-reportes-automáticamente-para-ver-los-resultados">El servicio monitor genera reportes automáticamente. Para ver los resultados:</h3>
+<blockquote>
+<p>Esperar 1-2 minutos después de generar tráfico</p>
+</blockquote>
+<blockquote>
+<p>Ir a http://localhost:8001</p>
+</blockquote>
+<blockquote>
+<p>Entrar al proyecto &quot;Monitoreo_AndesLink&quot;</p>
+</blockquote>
+<blockquote>
+<p>Ver reportes de Data Drift y Data Summary</p>
+</blockquote>
+<h1 id="estructura-del-proyecto"><strong>ESTRUCTURA DEL PROYECTO</strong></h1>
+<pre class="hljs"><code><div>Proyecto_AndesLink/
+├── data/
+│   ├── churn_sintetico.csv         # Dataset original
+│   ├── churn_procesado.csv         # Dataset procesado (DVC)
+│   └── logs.csv                    # Logs de predicciones
+── models/
+│   ├── modelo_churn_GBC_andeslink.pkl  # Modelo (DVC)
+│   ├── scaler_andeslink.pkl            # Scaler (DVC)
+│   ├── X_columns.pkl                   # Columnas (DVC)
+│   ── metrics.json                    # Métricas reales del modelo
+├── src/
+│   ├── prepare.py                  # Pipeline de preparación
+│   ├── train.py                    # Pipeline de entrenamiento
+│   └── main.py                     # FastAPI app (con validaciones estrictas)
+├── script/
+│   ├── push_to_ui.py               # Monitoreo automatizado (consolidado)
+│   └── generar_trafico_prueba.py   # Generación de tráfico realista
+├── tests/
+│   └── test_api.py                 # tests unitarios
+├── prometheus/
+│   └── prometheus.yml              # Config Prometheus
+├── workspace/                      # Snapshots Evidently
+├── reports/                        # Imágenes y reportes
+├── docker-compose.yml
+── Dockerfile                      # API
+├── Dockerfile.evidently            # Evidently (build time)
+├── requirements_churn_env2.txt
+└── README.md
+</div></code></pre>
+<h1 id="notas-de-seguridad"><strong>NOTAS DE SEGURIDAD</strong></h1>
+<blockquote>
+<p>Credenciales: Usar GitHub Secrets para DAGSHUB_TOKEN</p>
+</blockquote>
+<blockquote>
+<p>Contenedor de Inferencia: Sin credenciales de escritura MLflow</p>
+</blockquote>
+<blockquote>
+<p>Imágenes Oficiales: python:3.10-slim, grafana:10.2.0, prom/prometheus:v2.45.0</p>
+</blockquote>
+<blockquote>
+<p>Red Aislada: andeslink_network (bridge driver)</p>
+</blockquote>
+<blockquote>
+<p>Validación Estricta: Pydantic Literal + Field previene inyección de datos inválidos</p>
+</blockquote>
+
+</body>
+</html>
