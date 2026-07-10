@@ -1,0 +1,7 @@
+fastapi==0.136.1
+uvicorn==0.47.0
+python-dotenv==1.2.2
+pydantic==2.13.4
+pandas==2.1.4
+scikit-learn==1.4.2
+joblib==1.5.3

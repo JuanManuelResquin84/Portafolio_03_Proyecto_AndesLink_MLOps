@@ -55,9 +55,13 @@ services:
       - prometheus
 
   monitor:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.evidently
     container_name: andeslink_monitor_container
     command: python script/push_to_ui.py
+    environment:
+      - MONITOR_INTERVAL_SECONDS=30
     volumes:
       - .:/app
     networks:
